@@ -341,6 +341,16 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
   // CARTÕES DAS MENSAGENS
   // ==================================================
 
+    // Verifica se uma mensagem está liberada para publicação
+  function isPublished(message) {
+    if (message.status) {
+      return message.status === "publicado";
+    }
+
+    // Compatibilidade temporária com o campo antigo
+    return message.published === true;
+  }
+  
   function createMessageCard(message) {
     const category = categoryNames[message.category] || "Reflexão";
 
@@ -365,9 +375,7 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
   }
 
   function renderMessageLists() {
-    const publishedMessages = messages.filter(
-      message => message.published === true
-    );
+    const publishedMessages = messages.filter(isPublished);
 
     // Biblioteca
     const library = document.querySelector("#message-list");
