@@ -41,9 +41,18 @@ content:
         label: Resumo
         type: text
 
-      - name: published
-        label: Publicada
-        type: boolean
+      - name: status
+        label: Status da mensagem
+        type: select
+        required: true
+        options:
+          values:
+            - label: Rascunho
+              value: rascunho
+            - label: Em revisão
+              value: revisao
+            - label: Publicado
+              value: publicado
 
       - name: featured
         label: Destaque na página inicial
