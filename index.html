@@ -1,214 +1,1348 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173c32">
-  <meta name="description" content="Palavra de Domingo — registro pessoal das mensagens do culto de domingo à noite da IEQ Resgate.">
-  <title>Palavra de Domingo | IEQ Resgate</title>
-  <style>
-    :root {
-      --green: #173c32; --green2: #245344; --cream: #f4f0e6;
-      --paper: #fffdf8; --gold: #c5a56a; --ink: #252923;
-      --muted: #72766e; --line: #e5e0d5; --white: #fff;
-      --shadow: 0 14px 40px rgba(24, 48, 39, .09);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173c32" id="themeColor">
+<meta name="description" content="Palavra de Domingo — biblioteca independente de mensagens, reflexões e ensinamentos cristãos.">
+<title>Palavra de Domingo | IEQ Resgate</title>
+
+<script>
+  (function () {
+    try {
+      const saved = localStorage.getItem("pdd-theme") || "auto";
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved === "auto" ? (systemDark ? "dark" : "light") : saved;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.themePreference = saved;
+    } catch (e) {
+      document.documentElement.dataset.theme = "light";
+      document.documentElement.dataset.themePreference = "auto";
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--cream); color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    .wrap { width: min(1100px, calc(100% - 36px)); margin: auto; }
-    header { background: var(--green); color: var(--cream); }
-    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; letter-spacing: .08em; }
-    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; font-size: 22px; }
-    .brand strong { display: block; font-size: 14px; font-weight: 600; }
-    .brand small { display: block; margin-top: 4px; color: #d4cbb8; font: 10px/1.2 system-ui; letter-spacing: .16em; }
-    nav { display: flex; gap: 24px; font-size: 13px; color: #e6e0d4; }
-    nav a:hover { color: var(--gold); }
-    .hero { background: var(--green); color: var(--cream); padding: 66px 0 84px; position: relative; overflow: hidden; }
-    .hero:after { content: "✳"; position: absolute; right: 8%; top: 4px; color: rgba(197,165,106,.13); font-size: 260px; line-height: 1; pointer-events: none; }
-    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .2em; font-size: 10px; font-weight: 700; }
-    h1,h2,h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
-    h1 { max-width: 720px; font-size: clamp(42px, 7vw, 76px); line-height: .99; letter-spacing: -.045em; margin: 20px 0; }
-    .hero p { max-width: 560px; color: #e1dfd5; line-height: 1.75; font-size: 15px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 18px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: .04em; border: 1px solid transparent; cursor: pointer; }
-    .btn-gold { background: var(--gold); color: #1d2e27; }
-    .btn-outline { border-color: #71877d; color: var(--cream); }
-    main { padding: 56px 0 76px; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
-    .section-head h2 { margin: 8px 0 0; font-size: clamp(30px, 4vw, 42px); color: var(--green); }
-    .section-head p { color: var(--muted); font-size: 13px; max-width: 360px; line-height: 1.6; margin: 0; }
-    .featured { display: grid; grid-template-columns: 1.1fr .9fr; background: var(--paper); box-shadow: var(--shadow); border: 1px solid var(--line); }
-    .feature-art { min-height: 310px; background: linear-gradient(140deg, rgba(23,60,50,.9), rgba(23,60,50,.55)), radial-gradient(circle at 75% 25%, #b89b64, transparent 28%), linear-gradient(35deg, #243b30, #8a7955); display: flex; align-items: end; padding: 30px; color: var(--cream); }
-    .feature-art span { font-family: Georgia, serif; font-size: clamp(30px, 4vw, 48px); line-height: 1.05; max-width: 340px; }
-    .feature-copy { padding: 34px; display: flex; flex-direction: column; justify-content: center; }
-    .meta { color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-    .feature-copy h3 { font-size: 34px; color: var(--green); line-height: 1.12; margin: 14px 0; }
-    .feature-copy p { color: #646960; line-height: 1.7; font-size: 14px; }
-    .text-link { color: var(--green2); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-top: 12px; }
-    .archive { margin-top: 70px; }
-    .search-row { display: flex; gap: 10px; margin: 22px 0; }
-    .search-row input { width: 100%; padding: 14px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 3px; outline-color: var(--gold); }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card { background: var(--paper); border: 1px solid var(--line); padding: 22px; min-height: 210px; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
-    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-    .card h3 { color: var(--green); font-size: 25px; line-height: 1.12; margin: 14px 0 10px; }
-    .card p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0 0 14px; }
-    .card .text-link { margin-top: auto; }
-    .empty { display:none; color:var(--muted); padding:24px; background:var(--paper); border:1px dashed var(--line); }
-    .about { margin-top: 70px; background: #e9e5d9; padding: 34px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; }
-    .about h2 { color: var(--green); font-size: 34px; margin: 8px 0; }
-    .about p { color: #5d625a; line-height: 1.75; font-size: 14px; margin: 0; }
-    footer { background: var(--green); color: #d8d4c8; padding: 26px 0; font-size: 11px; }
-    .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-    .notice { color: #8b6b35; background: #f7efd9; border: 1px solid #eadbb5; padding: 12px 14px; font-size: 12px; line-height: 1.6; margin-top: 18px; }
-    dialog { width: min(760px, calc(100% - 24px)); max-height: 88vh; overflow:auto; border:0; padding:0; background:var(--paper); color:var(--ink); box-shadow:0 24px 80px #0005; }
-    dialog::backdrop { background:#101b17b8; }
-    .reader { padding: clamp(22px, 5vw, 48px); }
-    .reader-top { display:flex; justify-content:space-between; gap:16px; align-items:center; }
-    .close { border:1px solid var(--line); background:transparent; padding:9px 12px; cursor:pointer; }
-    .reader h2 { color:var(--green); font-size:clamp(34px,6vw,52px); line-height:1.05; margin:22px 0 12px; }
-    .reader h3 { color:var(--green); font-size:25px; margin:28px 0 10px; }
-    .reader p, .reader li { color:#555d55; line-height:1.8; font-size:15px; }
-    .reader blockquote { margin:20px 0; padding:16px 20px; border-left:3px solid var(--gold); background:var(--cream); color:var(--green); font:italic 19px/1.55 Georgia,serif; }
-    @media (max-width:700px) {
-      .nav { min-height:68px; } nav { gap:13px; font-size:11px; }
-      .hero { padding:54px 0 65px; } .hero:after { right:-60px; top:40px; font-size:190px; }
-      .featured { grid-template-columns:1fr; } .feature-art { min-height:190px; }
-      .feature-copy { padding:25px; } .cards { grid-template-columns:1fr; }
-      .card { min-height:175px; } .about { grid-template-columns:1fr; padding:25px; }
-      .section-head { display:block; } .section-head p { margin-top:10px; }
-    }
-    @media (max-width:390px) { .brand strong {font-size:12px;} nav {gap:9px;} nav a {font-size:10px;} }
-  </style>
+  })();
+</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --green: #173c32;
+  --green2: #245344;
+  --cream: #f4f0e6;
+  --paper: #fffdf8;
+  --gold: #c5a56a;
+  --ink: #252923;
+  --muted: #72766e;
+  --line: #e5e0d5;
+  --soft: #e9e5d9;
+  --notice-bg: #f7efd9;
+  --notice-text: #8b6b35;
+  --shadow: 0 14px 40px rgba(24, 48, 39, .09);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --green: #101f19;
+  --green2: #b5cbbd;
+  --cream: #17251f;
+  --paper: #20332a;
+  --gold: #d7bd7c;
+  --ink: #eeeade;
+  --muted: #b3bdb4;
+  --line: #3b4d42;
+  --soft: #293c31;
+  --notice-bg: #403a29;
+  --notice-text: #e4c77e;
+  --shadow: 0 14px 40px rgba(0, 0, 0, .22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme-preference="auto"] {
+    color-scheme: dark;
+    --green: #101f19;
+    --green2: #b5cbbd;
+    --cream: #17251f;
+    --paper: #20332a;
+    --gold: #d7bd7c;
+    --ink: #eeeade;
+    --muted: #b3bdb4;
+    --line: #3b4d42;
+    --soft: #293c31;
+    --notice-bg: #403a29;
+    --notice-text: #e4c77e;
+    --shadow: 0 14px 40px rgba(0, 0, 0, .22);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background .2s, color .2s;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+
+.wrap {
+  width: min(1100px, calc(100% - 36px));
+  margin: auto;
+}
+
+header {
+  background: var(--green);
+  color: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: Georgia, serif;
+  letter-spacing: .08em;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.brand strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.brand small {
+  display: block;
+  margin-top: 4px;
+  color: #d4cbb8;
+  font: 10px/1.2 system-ui;
+  letter-spacing: .16em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: #e6e0d4;
+}
+
+nav a:hover { color: var(--gold); }
+
+.theme-select {
+  color: #f4f0e6;
+  background: rgba(255,255,255,.08);
+  border: 1px solid #71877d;
+  border-radius: 3px;
+  padding: 9px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  max-width: 145px;
+}
+
+.theme-select option {
+  background: #173c32;
+  color: white;
+}
+
+.menu-button {
+  display: none;
+  color: var(--cream);
+  background: transparent;
+  border: 1px solid #71877d;
+  border-radius: 3px;
+  padding: 7px 11px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.hero {
+  background: var(--green);
+  color: var(--cream);
+  padding: 66px 0 84px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero:after {
+  content: "✳";
+  position: absolute;
+  right: 8%;
+  top: 4px;
+  color: rgba(197,165,106,.13);
+  font-size: 260px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+h1 {
+  max-width: 720px;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: .99;
+  letter-spacing: -.045em;
+  margin: 20px 0;
+}
+
+.hero p {
+  max-width: 560px;
+  color: #e1dfd5;
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 18px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #1d2e27;
+}
+
+.btn-outline {
+  border-color: #71877d;
+  color: var(--cream);
+  background: transparent;
+}
+
+.btn:hover { filter: brightness(1.08); }
+
+main { padding: 56px 0 76px; }
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.section-head h2 {
+  margin: 8px 0 0;
+  font-size: clamp(30px, 4vw, 42px);
+  color: var(--green2);
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 360px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.featured {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.feature-art {
+  min-height: 310px;
+  background:
+    linear-gradient(140deg, rgba(23,60,50,.9), rgba(23,60,50,.55)),
+    radial-gradient(circle at 75% 25%, #b89b64, transparent 28%),
+    linear-gradient(35deg, #243b30, #8a7955);
+  display: flex;
+  align-items: end;
+  padding: 30px;
+  color: #f4f0e6;
+}
+
+.feature-art span {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  max-width: 340px;
+}
+
+.feature-copy {
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.feature-copy h3 {
+  font-size: 34px;
+  color: var(--green2);
+  line-height: 1.12;
+  margin: 14px 0;
+}
+
+.feature-copy p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.text-link {
+  color: var(--green2);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 12px;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.text-link:hover { color: var(--gold); }
+
+.archive, .discipleship, .church, .about { margin-top: 70px; }
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.search-row input, .search-row select {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  outline-color: var(--gold);
+}
+
+.search-row select { max-width: 210px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 22px;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  color: var(--green2);
+  font-size: 25px;
+  line-height: 1.12;
+  margin: 14px 0 10px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.card .text-link { margin-top: auto; }
+
+.empty {
+  display: none;
+  color: var(--muted);
+  padding: 24px;
+  background: var(--paper);
+  border: 1px dashed var(--line);
+}
+
+.discipleship {
+  background: var(--soft);
+  padding: 34px;
+  border: 1px solid var(--line);
+}
+
+.discipleship h2 {
+  color: var(--green2);
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.1;
+  margin: 10px 0 18px;
+}
+
+.discipleship p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+  max-width: 800px;
+  margin: 0 0 14px;
+}
+
+.discipleship blockquote {
+  margin: 22px 0;
+  padding: 16px 20px;
+  border-left: 3px solid var(--gold);
+  color: var(--green2);
+  background: var(--paper);
+  font: italic 19px/1.55 Georgia, serif;
+}
+
+.church-card {
+  background: var(--green);
+  color: var(--cream);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.church-card h3 {
+  font-size: 28px;
+  margin: 8px 0 12px;
+}
+
+.church-card p {
+  color: #e1dfd5;
+  line-height: 1.7;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.church-card .btn { flex-shrink: 0; }
+
+.about {
+  background: var(--soft);
+  padding: 34px;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 30px;
+  border: 1px solid var(--line);
+}
+
+.about h2 {
+  color: var(--green2);
+  font-size: 34px;
+  margin: 8px 0;
+}
+
+.about p {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 14px;
+  margin: 0;
+}
+
+.notice {
+  color: var(--notice-text);
+  background: var(--notice-bg);
+  border: 1px solid var(--gold);
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+footer {
+  background: var(--green);
+  color: #d8d4c8;
+  padding: 26px 0;
+  font-size: 11px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+dialog {
+  width: min(760px, calc(100% - 24px));
+  max-height: 88vh;
+  overflow: auto;
+  border: 1px solid var(--line);
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 80px #0005;
+}
+
+dialog::backdrop { background: #101b17b8; }
+
+.reader { padding: clamp(22px, 5vw, 48px); }
+
+.reader-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.close {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 9px 12px;
+  cursor: pointer;
+}
+
+.reader h2 {
+  color: var(--green2);
+  font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.05;
+  margin: 22px 0 12px;
+}
+
+.reader h3 {
+  color: var(--green2);
+  font-size: 25px;
+  margin: 28px 0 10px;
+}
+
+.reader p, .reader li {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.reader blockquote {
+  margin: 20px 0;
+  padding: 16px 20px;
+  border-left: 3px solid var(--gold);
+  background: var(--cream);
+  color: var(--green2);
+  font: italic 19px/1.55 Georgia, serif;
+}
+
+.reflection {
+  margin-top: 34px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+
+.reflection h3 { margin-top: 0; }
+
+.reflection label {
+  display: block;
+  margin: 16px 0 7px;
+  color: var(--green2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reflection textarea {
+  display: block;
+  width: 100%;
+  min-height: 85px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.reflection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--green2);
+  border: 1px solid var(--line);
+}
+
+.privacy {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 13px;
+}
+
+.toast {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 100;
+  max-width: 90%;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .nav { min-height: 68px; }
+  .nav-right { gap: 8px; }
+  .menu-button { display: block; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    padding: 18px;
+    background: var(--green);
+    flex-direction: column;
+    gap: 18px;
+    border-top: 1px solid #71877d;
+  }
+  nav.open { display: flex; }
+  .theme-select { max-width: 120px; }
+  .hero { padding: 54px 0 65px; }
+  .hero:after { right: -60px; top: 40px; font-size: 190px; }
+  .featured { grid-template-columns: 1fr; }
+  .feature-art { min-height: 190px; }
+  .feature-copy { padding: 25px; }
+  .cards { grid-template-columns: 1fr; }
+  .card { min-height: 175px; }
+  .about { grid-template-columns: 1fr; padding: 25px; }
+  .section-head { display: block; }
+  .section-head p { margin-top: 10px; }
+  .search-row { flex-direction: column; }
+  .search-row select { max-width: none; }
+  .church-card { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 390px) {
+  .brand strong { font-size: 11px; }
+  .brand small { font-size: 8px; }
+  .brand { gap: 7px; }
+  .brand-mark { width: 36px; height: 36px; }
+  .theme-select { font-size: 10px; padding: 8px 5px; max-width: 105px; }
+}
+</style>
 </head>
+
 <body>
+
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#" aria-label="Palavra de Domingo - início">
+    <a class="brand" href="#inicio" aria-label="Palavra de Domingo - início">
       <span class="brand-mark">P</span>
-      <span><strong>PALAVRA DE DOMINGO</strong><small>IEQ RESGATE · PROJETO PESSOAL</small></span>
+      <span>
+        <strong>PALAVRA DE DOMINGO</strong>
+        <small>IEQ RESGATE · PROJETO PESSOAL</small>
+      </span>
     </a>
-    <nav aria-label="Navegação principal">
-      <a href="#inicio">Início</a><a href="#mensagens">Mensagens</a><a href="#sobre">Sobre</a>
-    </nav>
+
+    <div class="nav-right">
+      <nav id="mainNav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#mensagens">Mensagens</a>
+        <a href="#discipulado">Discipulado</a>
+        <a href="#igreja">Igreja</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+
+      <select class="theme-select" id="themeSelect" aria-label="Escolher tema">
+        <option value="auto">◐ Automático</option>
+        <option value="light">☀ Claro</option>
+        <option value="dark">☾ Escuro</option>
+      </select>
+
+      <button class="menu-button" id="menuButton" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
   </div>
 </header>
 
 <section class="hero" id="inicio">
-  <div class="wrap">
-    <div class="eyebrow">IEQ Resgate · Culto de domingo à noite</div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">IEQ Resgate · Culto de domingo às 18h30</div>
     <h1>Uma palavra para guardar. Uma verdade para viver.</h1>
-    <p>Um espaço pessoal para registrar, organizar e revisitar os ensinamentos compartilhados nas ministrações de domingo, às 18h30.</p>
+    <p>
+      Um espaço independente para registrar, organizar e revisitar
+      os ensinamentos compartilhados nas ministrações de domingo.
+      Porque a reflexão pode continuar durante toda a semana.
+    </p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="#mensagens">EXPLORAR MENSAGENS</a>
-      <a class="btn btn-outline" href="#sobre">CONHECER O PROJETO</a>
+      <a class="btn btn-outline" href="#discipulado">CONTINUAR A CAMINHADA</a>
     </div>
   </div>
 </section>
 
 <main class="wrap">
+
   <section aria-labelledby="destaque">
     <div class="section-head">
-      <div><div class="eyebrow">Para revisitar</div><h2 id="destaque">Mensagem em destaque</h2></div>
+      <div>
+        <div class="eyebrow">Para revisitar</div>
+        <h2 id="destaque">Mensagem em destaque</h2>
+      </div>
       <p>Uma oportunidade de lembrar, durante a semana, aquilo que foi compartilhado no culto.</p>
     </div>
+
     <article class="featured">
-      <div class="feature-art"><span>Fé que continua<br>depois do domingo.</span></div>
+      <div class="feature-art">
+        <span>Fé que continua<br>depois do domingo.</span>
+      </div>
       <div class="feature-copy">
-        <div class="meta">Exemplo demonstrativo · conteúdo fictício</div>
+        <div class="meta">Exemplo demonstrativo · Conteúdo fictício</div>
         <h3>Uma vida de permanência</h3>
-        <p>Esta é uma publicação de demonstração para mostrar como as mensagens serão apresentadas. O conteúdo real será inserido após cada culto e conferido com as anotações da ministração.</p>
-        <a class="text-link" href="#mensagens" onclick="openMessage('demo')">LER EXEMPLO COMPLETO →</a>
+        <p>
+          Esta é uma publicação de demonstração para mostrar como
+          as mensagens serão apresentadas. O conteúdo real será
+          inserido após cada culto e conferido com as anotações
+          da ministração.
+        </p>
+        <button class="text-link" onclick="openMessage('demo')">LER EXEMPLO COMPLETO →</button>
       </div>
     </article>
-    <div class="notice"><strong>Importante:</strong> este é um projeto pessoal em desenvolvimento, não um canal oficial da IEQ Resgate. A mensagem em destaque é fictícia e serve apenas como demonstração do formato.</div>
+
+    <div class="notice">
+      <strong>Importante:</strong> este é um projeto pessoal e independente,
+      não um canal oficial da IEQ Resgate. A mensagem em destaque é fictícia
+      e serve apenas como demonstração do formato.
+    </div>
   </section>
 
   <section class="archive" id="mensagens">
     <div class="section-head">
-      <div><div class="eyebrow">Arquivo</div><h2>Mensagens</h2></div>
-      <p>Encontre uma publicação pelo título, pregador, passagem bíblica ou assunto.</p>
+      <div>
+        <div class="eyebrow">Acervo digital</div>
+        <h2>Mensagens</h2>
+      </div>
+      <p>Encontre uma publicação pelo título, assunto ou referência bíblica.</p>
     </div>
+
     <div class="search-row">
       <input id="search" type="search" placeholder="Pesquisar mensagens..." aria-label="Pesquisar mensagens">
+      <select id="categoryFilter" aria-label="Filtrar mensagens">
+        <option value="">Todos os assuntos</option>
+        <option value="permanência">Permanência</option>
+        <option value="fé">Fé</option>
+        <option value="discipulado">Discipulado</option>
+      </select>
     </div>
+
     <div class="cards" id="cards">
-      <article class="card" data-search="uma vida de permanência exemplo demonstração joão 15 constância fé">
+      <article class="card" data-category="permanência" data-search="uma vida de permanência exemplo demonstração joão 15 constância fé">
         <div class="meta">Exemplo · Domingo, 18h30</div>
         <h3>Uma vida de permanência</h3>
         <p>Texto bíblico demonstrativo: João 15:1–8. Conteúdo fictício para visualizar a estrutura.</p>
-        <a class="text-link" href="#" onclick="openMessage('demo'); return false;">LER MENSAGEM →</a>
+        <button class="text-link" onclick="openMessage('demo')">LER MENSAGEM →</button>
       </article>
-      <article class="card" data-search="próxima mensagem aguardando publicação">
-        <div class="meta">Em breve</div>
-        <h3>Próxima mensagem</h3>
-        <p>Este espaço receberá o registro de uma próxima ministração, depois de revisado.</p>
-        <span class="text-link">AGUARDANDO PUBLICAÇÃO</span>
+
+      <article class="card" data-category="fé" data-search="uma fé que amadurece confiança crescimento">
+        <div class="meta">Exemplo demonstrativo</div>
+        <h3>Uma fé que amadurece</h3>
+        <p>Uma reflexão demonstrativa sobre confiança, aprendizado e crescimento na caminhada cristã.</p>
+        <button class="text-link" onclick="openMessage('fe')">LER MENSAGEM →</button>
+      </article>
+
+      <article class="card" data-category="discipulado" data-search="caminhar acompanhado discipulado comunhão">
+        <div class="meta">Exemplo demonstrativo</div>
+        <h3>Caminhar acompanhado</h3>
+        <p>Uma reflexão demonstrativa sobre comunhão, discipulado e crescimento compartilhado.</p>
+        <button class="text-link" onclick="openMessage('caminhar')">LER MENSAGEM →</button>
       </article>
     </div>
+
     <div class="empty" id="empty">Nenhuma mensagem encontrada. Tente outro termo.</div>
   </section>
 
-  <section class="about" id="sobre">
-    <div><div class="eyebrow">Sobre o projeto</div><h2>Guardar a mensagem. Praticar a Palavra.</h2></div>
-    <div>
-      <p>Palavra de Domingo é uma iniciativa pessoal para organizar resumos das ministrações do culto de domingo às 18h30, relacionadas à IEQ Resgate. A intenção é facilitar a consulta aos ensinamentos e às referências bíblicas ao longo da semana.</p>
-      <p style="margin-top:12px">Os resumos devem preservar o sentido da pregação e ser conferidos antes da publicação. Este projeto não substitui a participação nos cultos, a leitura bíblica ou a orientação pastoral.</p>
-      <p style="margin-top:12px"><strong>Projeto independente — não oficial.</strong> O uso do nome da igreja é apenas para identificar o contexto das mensagens; a publicação institucional depende de autorização.</p>
+  <section class="discipleship" id="discipulado">
+    <div class="eyebrow">Além do domingo</div>
+    <h2>A caminhada não termina no culto.</h2>
+    <p>
+      Participar de uma reunião é importante, mas o crescimento cristão
+      também acontece nos dias comuns: nas conversas, nas decisões,
+      nos relacionamentos e na disposição de aprender.
+    </p>
+    <p>
+      Jesus não chamou pessoas apenas para ouvir ensinamentos.
+      Ele chamou discípulos para caminhar com Ele e aprender por
+      meio de uma relação de proximidade.
+    </p>
+    <blockquote>
+      O crescimento na fé também acontece quando caminhamos juntos,
+      aprendemos uns com os outros e permanecemos disponíveis para amadurecer.
+    </blockquote>
+    <p>
+      Por isso, procure viver em comunhão, aproximar-se de pessoas
+      maduras na fé e buscar acompanhamento por meio do discipulado
+      e da liderança da sua igreja.
+    </p>
+    <p>
+      Este espaço pode ajudar você a revisitar uma mensagem, mas não
+      substitui a comunhão, o acompanhamento pastoral ou a convivência
+      com a igreja.
+    </p>
+  </section>
+
+  <section class="church" id="igreja">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Comunidade</div>
+        <h2>Conheça a IEQ Resgate</h2>
+      </div>
+      <p>As mensagens deste projeto têm como referência os cultos de domingo às 18h30.</p>
+    </div>
+
+    <div class="church-card">
+      <div>
+        <div class="eyebrow">Belém · Pará</div>
+        <h3>Igreja do Evangelho Quadrangular Resgate</h3>
+        <p>📍 Passagem Iracema, 309 — Marambaia, Belém–PA</p>
+        <p>🕡 Culto de domingo: 18h30</p>
+        <p>Um convite para conhecer a comunidade e participar presencialmente.</p>
+      </div>
+
+      <a class="btn btn-gold"
+        href="https://www.google.com/maps/search/?api=1&query=IEQ+Resgate+Passagem+Iracema+309+Bel%C3%A9m+PA"
+        target="_blank" rel="noopener noreferrer">
+        VER LOCALIZAÇÃO ↗
+      </a>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="wrap footer-inner">
-    <span>PALAVRA DE DOMINGO · IEQ RESGATE</span>
-    <span>Projeto pessoal em desenvolvimento · 2026</span>
+  <section class="about" id="sobre">
+    <div>
+      <div class="eyebrow">Sobre o projeto</div>
+        <h2>Guardar a mensagem. Praticar a Palavra.</h2>
+    </div>
+    <div>
+      <p>
+        Palavra de Domingo é uma iniciativa pessoal para organizar
+        resumos das ministrações do culto de domingo às 18h30,
+        relacionadas à IEQ Resgate. A intenção é facilitar a consulta
+        aos ensinamentos e às referências bíblicas ao longo da semana.
+      </p>
+      <p>
+        Este projeto é independente e não representa um canal oficial
+        da igreja. Os conteúdos são organizados com o objetivo de
+        incentivar o estudo bíblico, a reflexão e a prática da Palavra.
+      </p>
+      <p>
+        As mensagens publicadas devem respeitar a autorização de seus
+        respectivos responsáveis. Informações sobre redes sociais
+        oficiais serão adicionadas quando confirmadas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="discipulado">
+  <div class="section-heading">
+    <span class="eyebrow">Além do domingo</span>
+    <h2>A caminhada não termina no culto.</h2>
+    <p>
+      Ouvir uma mensagem é importante, mas viver a Palavra acontece
+      também durante a semana.
+    </p>
+  </div>
+
+  <div class="discipleship-card">
+    <h3>Você não precisa caminhar sozinho.</h3>
+    <p>
+      Procure desenvolver comunhão com outras pessoas, participar
+      de uma célula e buscar acompanhamento por meio do discipulado.
+      Compartilhar dúvidas, aprender e crescer junto faz parte da
+      caminhada cristã.
+    </p>
+    <p>
+      Este espaço pode ajudar você a revisitar os ensinamentos,
+      mas não substitui a convivência com a igreja, o discipulado
+      ou o acompanhamento pastoral.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="igreja">
+  <div class="section-heading">
+    <span class="eyebrow">Conheça a igreja</span>
+    <h2>Existe um lugar para caminhar em comunhão.</h2>
+    <p>
+      Se você deseja conhecer a IEQ Resgate, será bem-vindo!
+    </p>
+  </div>
+
+  <div class="church-card">
+    <div>
+      <h3>IEQ Resgate</h3>
+      <p>
+        Passagem Iracema, 309 — Marambaia,
+        Belém — PA.
+      </p>
+      <p>
+        Culto de domingo às 18h30.
+      </p>
+      <a
+        class="button button-primary"
+        href="https://www.google.com/maps/search/?api=1&query=IEQ+Resgate+Passagem+Iracema+309+Bel%C3%A9m+PA"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Como chegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sobre">
+  <div class="section-heading">
+    <span class="eyebrow">Sobre o projeto</span>
+    <h2>Uma biblioteca de mensagens para consultar durante a semana.</h2>
+  </div>
+
+  <div class="about-grid">
+    <article class="about-card">
+      <h3>Nosso propósito</h3>
+      <p>
+        Reunir resumos das ministrações de domingo, suas referências
+        bíblicas e reflexões, ajudando cada pessoa a revisitar o que
+        foi ensinado e colocar a Palavra em prática.
+      </p>
+    </article>
+
+    <article class="about-card">
+      <h3>Um projeto independente</h3>
+      <p>
+        Palavra de Domingo é uma iniciativa pessoal, sem caráter
+        institucional. Não representa oficialmente a IEQ Resgate
+        nem substitui seus canais de comunicação.
+      </p>
+    </article>
+
+    <article class="about-card">
+      <h3>Redes sociais</h3>
+      <p>
+        Os links das redes sociais oficiais da igreja serão
+        disponibilizados após confirmação.
+      </p>
+      <span class="status">Em confirmação</span>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <a class="brand footer-brand" href="#inicio">
+      <span class="brand-mark">P</span>
+      <span>Palavra de Domingo</span>
+    </a>
+    <p>
+      Guardar a mensagem. Praticar a Palavra.
+    </p>
+    <p class="copyright">
+      © <span id="currentYear"></span> Palavra de Domingo.
+      Projeto independente.
+    </p>
   </div>
 </footer>
 
-<dialog id="reader">
-  <div class="reader">
-    <div class="reader-top"><span class="eyebrow">Leitura da mensagem</span><button class="close" onclick="document.getElementById('reader').close()">FECHAR ✕</button></div>
-    <div class="meta" style="margin-top:24px">Exemplo demonstrativo · Culto de domingo, 18h30</div>
-    <h2>Uma vida de permanência</h2>
-    <p><strong>Pregador:</strong> Não informado — exemplo fictício</p>
-    <p><strong>Texto bíblico:</strong> João 15:1–8 (referência usada apenas para demonstração)</p>
-    <div class="notice">Este texto não é o resumo de uma pregação real. Ele demonstra a organização que será utilizada nas futuras publicações.</div>
-    <h3>Ideia central</h3>
-    <p>A vida cristã não se resume a momentos isolados. A imagem da videira, em João 15, convida os discípulos a permanecerem ligados a Cristo e a desenvolverem uma vida que produza frutos.</p>
-    <h3>Resumo da mensagem</h3>
-    <p>Nesta área será apresentado um resumo completo e fiel da ministração: a introdução, o desenvolvimento dos principais argumentos, os exemplos utilizados pelo pregador e a conclusão. A redação será organizada para facilitar a leitura, sem atribuir ao pregador ideias que não foram apresentadas.</p>
-    <blockquote>“Permanecei em mim, e eu permanecerei em vós.” — João 15:4</blockquote>
-    <h3>Principais ensinamentos</h3>
-    <ul><li>Identificar a ideia principal desenvolvida na pregação.</li><li>Registrar os ensinamentos e as referências bíblicas mencionadas.</li><li>Apresentar as aplicações práticas propostas durante a ministração.</li></ul>
-    <h3>Para refletir durante a semana</h3>
-    <ul><li>O que ficou mais marcante para mim nesta mensagem?</li><li>Como posso colocar esse ensinamento em prática?</li><li>Que passagem bíblica quero reler com mais atenção?</li></ul>
-    <p class="meta">Modelo demonstrativo · Conferir todo o conteúdo antes de publicar.</p>
+<dialog class="reader" id="reader">
+  <div class="reader-header">
+    <button class="icon-button" id="closeReader" aria-label="Fechar">
+      ×
+    </button>
   </div>
+  <div class="reader-content" id="readerContent"></div>
 </dialog>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-  const search = document.getElementById('search');
-  const cards = [...document.querySelectorAll('.card')];
-  const empty = document.getElementById('empty');
-  search.addEventListener('input', () => {
-    const term = search.value.trim().toLocaleLowerCase('pt-BR');
-    let visible = 0;
-    cards.forEach(card => {
-      const match = (card.dataset.search + ' ' + card.innerText).toLocaleLowerCase('pt-BR').includes(term);
-      card.style.display = match ? 'flex' : 'none';
-      if (match) visible++;
-    });
-    empty.style.display = visible ? 'none' : 'block';
-  });
-  function openMessage(id) {
-    if (id === 'demo') document.getElementById('reader').showModal();
+  const messages = {
+    demo: {
+      title: "A importância de permanecer",
+      date: "Mensagem demonstrativa",
+      preacher: "Ministração demonstrativa",
+      category: "Vida cristã",
+      bible: "João 15:1-8",
+      introduction:
+        "Esta é uma mensagem demonstrativa, criada para apresentar a organização dos conteúdos da biblioteca.",
+      sections: [
+        {
+          title: "1. Permanecer é continuar conectado",
+          text:
+            "Jesus utiliza a imagem da videira e dos ramos para mostrar que a vida espiritual depende de uma relação contínua com Ele. Não se trata apenas de começar uma caminhada, mas de permanecer nela."
+        },
+        {
+          title: "2. A Palavra precisa produzir frutos",
+          text:
+            "A fé não deve ficar limitada ao conhecimento. O ensinamento recebido precisa alcançar nossas escolhas, atitudes e relacionamentos."
+        },
+        {
+          title: "3. A caminhada acontece todos os dias",
+          text:
+            "A vida cristã não se resume a um encontro semanal. É construída na comunhão, na oração, no aprendizado e na prática diária da Palavra."
+        }
+      ],
+      conclusion:
+        "Permanecer em Cristo significa construir uma vida conectada a Ele, permitindo que seus ensinamentos transformem nossas atitudes.",
+      references: [
+        "João 15:1-8",
+        "Colossenses 2:6-7",
+        "Tiago 1:22"
+      ]
+    },
+
+    demo2: {
+      title: "A fé que transforma atitudes",
+      date: "Mensagem demonstrativa",
+      preacher: "Ministração demonstrativa",
+      category: "Fé",
+      bible: "Tiago 2:14-18",
+      introduction:
+        "Uma mensagem demonstrativa sobre a relação entre aquilo que cremos e a maneira como vivemos.",
+      sections: [
+        {
+          title: "1. A fé vai além das palavras",
+          text:
+            "A fé verdadeira não se limita ao discurso. Ela influencia nossas decisões e aparece na maneira como tratamos as pessoas."
+        },
+        {
+          title: "2. A prática revela o que aprendemos",
+          text:
+            "Conhecer um ensinamento é diferente de praticá-lo. A Palavra nos convida a transformar conhecimento em atitudes."
+        },
+        {
+          title: "3. Pequenas atitudes também importam",
+          text:
+            "A transformação pode ser percebida nas escolhas cotidianas, na honestidade, no cuidado e no amor ao próximo."
+        }
+      ],
+      conclusion:
+        "A fé precisa encontrar espaço na vida real. Não basta ouvir a Palavra: precisamos permitir que ela transforme nossa maneira de viver.",
+      references: [
+        "Tiago 2:14-18",
+        "Mateus 7:24-27",
+        "Gálatas 5:6"
+      ]
+    },
+
+    demo3: {
+      title: "Identidade e propósito",
+      date: "Mensagem demonstrativa",
+      preacher: "Ministração demonstrativa",
+      category: "Propósito",
+      bible: "Efésios 2:10",
+      introduction:
+        "Uma reflexão demonstrativa sobre identidade, propósito e a importância de compreender o valor da vida em Deus.",
+      sections: [
+        {
+          title: "1. Nossa identidade não depende da aprovação humana",
+          text:
+            "A maneira como nos enxergamos pode ser influenciada pelas opiniões das pessoas, mas nossa identidade precisa estar fundamentada naquilo que Deus ensina."
+        },
+        {
+          title: "2. Existe propósito na caminhada",
+          text:
+            "Efésios 2:10 apresenta a ideia de que fomos criados para boas obras. Isso nos lembra que a vida cristã também envolve serviço e responsabilidade."
+        },
+        {
+          title: "3. Propósito também exige desenvolvimento",
+          text:
+            "Descobrir um propósito não significa que tudo acontecerá imediatamente. É necessário crescer, aprender e desenvolver aquilo que recebemos."
+        }
+      ],
+      conclusion:
+        "Compreender nossa identidade e desenvolver nosso propósito são partes importantes de uma caminhada de fé.",
+      references: [
+        "Efésios 2:10",
+        "Romanos 8:14-17",
+        "1 Pedro 2:9"
+      ]
+    }
+  };
+
+  const reader = document.getElementById("reader");
+  const readerContent = document.getElementById("readerContent");
+  const toast = document.getElementById("toast");
+  const searchInput = document.getElementById("searchInput");
+  const categoryFilter = document.getElementById("categoryFilter");
+  const messageCards = [...document.querySelectorAll(".message-card")];
+
+  document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timeout);
+    showToast.timeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2800);
   }
+
+  function openMessage(id) {
+    const message = messages[id];
+
+    if (!message) return;
+
+    const sections = message.sections
+      .map(section => `
+        <section class="reader-section">
+          <h3>${section.title}</h3>
+          <p>${section.text}</p>
+        </section>
+      `)
+      .join("");
+
+    const references = message.references
+      .map(reference => `<li>${reference}</li>`)
+      .join("");
+
+    const savedReflection =
+      localStorage.getItem(`pdd-reflection-${id}`) || "";
+
+    readerContent.innerHTML = `
+      <span class="eyebrow">${message.category}</span>
+      <h2>${message.title}</h2>
+
+      <div class="reader-meta">
+        <span>${message.date}</span>
+        <span>${message.preacher}</span>
+      </div>
+
+      <div class="bible-reference">
+        <strong>Texto bíblico principal</strong>
+        <p>${message.bible}</p>
+      </div>
+
+      <section class="reader-section">
+        <h3>Introdução</h3>
+        <p>${message.introduction}</p>
+      </section>
+
+      ${sections}
+
+      <section class="reader-section">
+        <h3>Conclusão</h3>
+        <p>${message.conclusion}</p>
+      </section>
+
+      <section class="reader-section">
+        <h3>Referências bíblicas</h3>
+        <ul>${references}</ul>
+      </section>
+
+      <div class="reflection-box">
+        <span class="eyebrow">Momento de reflexão</span>
+        <h3>Como praticar essa mensagem?</h3>
+        <p>
+          Escreva suas reflexões, aprendizados ou atitudes que deseja
+          desenvolver a partir desta mensagem.
+        </p>
+
+        <textarea
+          id="reflectionText"
+          placeholder="O que essa mensagem despertou em mim?"
+          rows="6"
+        >${savedReflection.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</textarea>
+
+        <div class="reflection-actions">
+          <button class="button button-primary" id="saveReflection">
+            Salvar reflexão
+          </button>
+          <button class="button button-secondary" id="clearReflection">
+            Apagar
+          </button>
+        </div>
+
+        <p class="privacy-note">
+          Sua reflexão fica salva apenas neste navegador e dispositivo.
+          Ela não é enviada para o site nem compartilhada com outras pessoas.
+        </p>
+      </div>
+    `;
+
+    reader.showModal();
+
+    document
+      .getElementById("saveReflection")
+      .addEventListener("click", () => {
+        const reflection =
+          document.getElementById("reflectionText").value;
+
+        localStorage.setItem(`pdd-reflection-${id}`, reflection);
+        showToast("Reflexão salva neste dispositivo!");
+      });
+
+    document
+      .getElementById("clearReflection")
+      .addEventListener("click", () => {
+        localStorage.removeItem(`pdd-reflection-${id}`);
+        document.getElementById("reflectionText").value = "";
+        showToast("Reflexão apagada.");
+      });
+  }
+
+  document.getElementById("closeReader").addEventListener("click", () => {
+    reader.close();
+  });
+
+  reader.addEventListener("click", event => {
+    if (event.target === reader) {
+      reader.close();
+    }
+  });
+
+  function filterMessages() {
+    const search =
+      searchInput.value.toLowerCase().trim();
+
+    const category = categoryFilter.value;
+
+    messageCards.forEach(card => {
+      const title =
+        card.dataset.title.toLowerCase();
+
+      const description =
+        card.dataset.description.toLowerCase();
+
+      const cardCategory = card.dataset.category;
+
+      const matchesSearch =
+        title.includes(search) ||
+        description.includes(search);
+
+      const matchesCategory =
+        category === "all" ||
+        category === cardCategory;
+
+      card.hidden = !(matchesSearch && matchesCategory);
+    });
+  }
+
+  searchInput.addEventListener("input", filterMessages);
+  categoryFilter.addEventListener("change", filterMessages);
+
+  const menuButton = document.getElementById("menuButton");
+  const nav = document.getElementById("mainNav");
+
+  menuButton.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const themeSelect = document.getElementById("themeSelect");
+  const savedTheme = localStorage.getItem("pdd-theme") || "auto";
+
+  function applyTheme(preference) {
+    const systemDark =
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const actualTheme =
+      preference === "auto"
+        ? (systemDark ? "dark" : "light")
+        : preference;
+
+    document.documentElement.dataset.theme = actualTheme;
+    document.documentElement.dataset.themePreference = preference;
+
+    localStorage.setItem("pdd-theme", preference);
+    themeSelect.value = preference;
+  }
+
+  themeSelect.addEventListener("change", () => {
+    applyTheme(themeSelect.value);
+  });
+
+  applyTheme(savedTheme);
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (themeSelect.value === "auto") {
+        applyTheme("auto");
+      }
+    });
 </script>
+
 </body>
 </html>
