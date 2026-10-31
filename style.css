@@ -487,19 +487,41 @@ h1 {
 
 .site-footer {
   margin-top: 55px;
-  background: #102B49;
+  background: linear-gradient(145deg, #17395F, #102B49);
   color: #E8F0F8;
-  padding: 44px 0 24px;
+  padding: 52px 0 26px;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 35px;
+  gap: 40px;
+}
+.site-footer p,
+.site-footer a {
+  color: #C4D2E0;
+  font-size: .9rem;
+  line-height: 1.8;
 }
 
-.site-footer p, .site-footer a { color: #B9C9DA; font-size: .9rem; }
-.site-footer h3 { color: white; font-size: 1rem; }
+.site-footer h3 {
+  color: #FFFFFF;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.site-footer .footer-grid > div:first-child h3 {
+  font-size: 1.15rem;
+}
+
+.site-footer a {
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.site-footer a:hover {
+  color: #D6B45B;
+}
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.16);
