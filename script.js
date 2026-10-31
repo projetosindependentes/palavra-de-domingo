@@ -411,6 +411,108 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         .join("");
     }
 
+    
+  // ==================================================
+  // CARREGAR MENSAGEM INDIVIDUAL
+  // ==================================================
+
+  function renderDynamicMessage() {
+    const page = document.querySelector("[data-dynamic-message]");
+
+    if (!page) return;
+
+    const slug = new URLSearchParams(window.location.search).get("slug");
+
+    const message = messages.find(item =>
+      item.slug === slug && isPublished(item)
+    );
+
+    const title = document.querySelector("#message-title");
+    const category = document.querySelector("#message-category");
+    const excerpt = document.querySelector("#message-excerpt");
+    const reference = document.querySelector("#message-reference");
+    const status = document.querySelector("#message-status");
+    const lead = document.querySelector("#message-lead");
+    const body = document.querySelector("#message-body");
+    const prompt = document.querySelector("#reflection-prompt");
+    const asideReference = document.querySelector("#aside-reference");
+    const notice = document.querySelector("#demonstration-notice");
+
+    if (!message) {
+      if (title) title.textContent = "Mensagem não encontrada";
+      if (category) category.textContent = "Indisponível";
+      if (excerpt) excerpt.textContent =
+        "Esta mensagem não está disponível ou ainda não foi publicada.";
+
+      if (body) body.replaceChildren();
+
+      return;
+    }
+
+    const categoryName =
+      categoryNames[message.category] || "Reflexão";
+
+    document.title = `${message.title} | Palavra de Domingo`;
+
+    if (title) title.textContent = message.title;
+    if (category) category.textContent = categoryName;
+    if (excerpt) excerpt.textContent = message.excerpt || "";
+    if (reference) reference.textContent = `📖 ${message.reference || ""}`;
+    if (status) status.textContent = "Mensagem";
+    if (lead) lead.textContent = message.excerpt || "";
+    if (prompt) {
+      prompt.textContent =
+        message.reflectionPrompt ||
+        "Reserve um momento para escrever suas próprias percepções e aprendizados.";
+    }
+
+    if (asideReference) {
+      asideReference.textContent =
+        message.reference || "Consulte sua Bíblia.";
+    }
+
+    if (body) {
+      body.innerHTML = message.body || "";
+    }
+
+    if (notice) {
+      notice.hidden = message.demonstration !== true;
+    }
+
+    const textarea = document.querySelector("#personal-reflection");
+
+    if (textarea) {
+      textarea.dataset.reflectionId = message.slug;
+    }
+
+    setupReflections();
+
+    const toc = document.querySelector("#message-toc");
+
+    if (toc && body) {
+      const headings = body.querySelectorAll("h2");
+
+      toc.replaceChildren();
+
+      const startLink = document.createElement("a");
+      startLink.href = "#top";
+      startLink.textContent = "Início";
+      toc.appendChild(startLink);
+
+      headings.forEach((heading, index) => {
+        const id = `section-${index + 1}`;
+
+        heading.id = id;
+
+        const link = document.createElement("a");
+        link.href = `#${id}`;
+        link.textContent = heading.textContent;
+
+        toc.appendChild(link);
+      });
+    }
+  }
+    
     // Mensagem em destaque
     renderFeaturedMessage(publishedMessages);
   }
