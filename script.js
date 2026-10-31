@@ -397,8 +397,10 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
 
     if (homeGrid) {
       const featured = publishedMessages.find(
-        message => message.featured === true
-      );
+  message =>
+    message.featured === true &&
+    message.demonstration !== true
+);
 
       const otherMessages = publishedMessages
         .filter(message => !featured || message.slug !== featured.slug)
