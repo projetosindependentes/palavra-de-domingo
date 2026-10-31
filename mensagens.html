@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17395F">
+  <meta name="description" content="Explore a biblioteca do Palavra de Domingo. Mensagens, reflexões e ensinamentos bíblicos.">
+  <title>Biblioteca | Palavra de Domingo</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (() => {
+      const theme = localStorage.getItem("pdd-theme");
+      document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+    })();
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span class="brand-name">
+        Palavra de Domingo
+        <small>Uma palavra para continuar</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="mensagens.html" aria-current="page">Biblioteca</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="igreja.html">A igreja</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="library-hero">
+    <div class="container">
+      <span class="eyebrow">Conhecimento que permanece</span>
+      <h1>Biblioteca de mensagens.</h1>
+      <p>Um lugar para revisitar ensinamentos, estudar as Escrituras e encontrar novas perspectivas para a caminhada cristã.</p>
+
+      <div class="library-tools">
+        <input
+          class="search-box"
+          type="search"
+          id="message-search"
+          placeholder="Pesquisar por título, tema ou versículo..."
+          aria-label="Pesquisar mensagens"
+        >
+      </div>
+
+      <div class="filter-row" aria-label="Filtrar mensagens">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+        <button class="filter-btn" type="button" data-filter="vida" aria-pressed="false">Vida cristã</button>
+        <button class="filter-btn" type="button" data-filter="fe" aria-pressed="false">Fé e prática</button>
+        <button class="filter-btn" type="button" data-filter="identidade" aria-pressed="false">Identidade</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Acervo</span>
+          <h2>Mensagens disponíveis</h2>
+          <p>Selecione uma mensagem para acessar sua reflexão completa.</p>
+        </div>
+      </div>
+
+      <div class="message-grid" id="message-list">
+
+        <a class="message-card" href="mensagens/permanecer.html" data-category="vida">
+          <span class="tag">Vida cristã</span>
+          <h3>A importância de permanecer</h3>
+          <p>Em João 15, Jesus apresenta a importância de permanecer nele e produzir frutos através dessa relação.</p>
+          <div class="card-meta">
+            <span>João 15:1–8</span>
+            <span>Ler mensagem →</span>
+          </div>
+        </a>
+
+        <a class="message-card" href="mensagens/fe.html" data-category="fe">
+          <span class="tag">Fé e prática</span>
+          <h3>A fé que transforma atitudes</h3>
+          <p>Uma reflexão sobre como a fé verdadeira se manifesta nas nossas escolhas e atitudes.</p>
+          <div class="card-meta">
+            <span>Tiago 2:14–18</span>
+            <span>Ler mensagem →</span>
+          </div>
+        </a>
+
+        <a class="message-card" href="mensagens/proposito.html" data-category="identidade">
+          <span class="tag">Identidade</span>
+          <h3>Identidade e propósito</h3>
+          <p>Uma reflexão sobre quem somos em Cristo e como podemos viver de acordo com o propósito de Deus.</p>
+          <div class="card-meta">
+            <span>Efésios 2:10</span>
+            <span>Ler mensagem →</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="empty-state hidden">
+        <h3>Nenhuma mensagem encontrada.</h3>
+        <p>Tente pesquisar outro termo ou selecionar uma categoria diferente.</p>
+      </div>
+
+      <div class="notice" style="margin-top:32px">
+        <strong>Nota:</strong> as mensagens apresentadas nesta versão são conteúdos demonstrativos. Os resumos de mensagens reais serão publicados após conferência e autorização necessárias.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Palavra de Domingo</h3>
+        <p>Uma palavra para continuar. Um espaço independente de reflexão e aprendizado.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p><a href="index.html">Página inicial</a></p>
+        <p><a href="sobre.html">Sobre o projeto</a></p>
+      </div>
+      <div>
+        <h3>Comunhão</h3>
+        <p><a href="igreja.html">Conheça a igreja</a></p>
+        <p>Continue vivendo aquilo que aprende.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Palavra de Domingo. Projeto independente, sem vínculo institucional oficial.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+                                                                                                                  </html>
+  
