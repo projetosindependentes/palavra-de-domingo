@@ -524,11 +524,13 @@ h1 {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.16);
-  margin-top: 28px;
-  padding-top: 18px;
-  color: #9EB2C8;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin-top: 38px;
+  padding-top: 22px;
+  color: #AFC1D3;
   font-size: .8rem;
+  line-height: 1.7;
+  text-align: center;
 }
 
 .notice {
