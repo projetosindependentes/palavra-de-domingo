@@ -146,8 +146,11 @@ content:
         label: Cor de destaque
         type: string
 
-      - name: projectNotice
-              - name: homeImage
+            - name: projectNotice
+        label: Aviso sobre o projeto
+        type: text
+
+      - name: homeImage
         label: Imagem de capa da página inicial
         type: image
         options:
