@@ -612,3 +612,27 @@ h1 {
   object-fit: cover;
   object-position: center;
 }
+/* Redes sociais configuradas pelo CMS */
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.footer-social h3 {
+  margin: 0 0 5px;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.footer-social a {
+  color: #B9C9DA;
+  font-size: .9rem;
+  transition: color .2s;
+}
+
+.footer-social a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
