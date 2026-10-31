@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17395F">
+  <meta name="description" content="Leia e reflita sobre esta mensagem no Palavra de Domingo.">
+  <title>Mensagem | Palavra de Domingo</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (() => {
+      const theme = localStorage.getItem("pdd-theme");
+      document.documentElement.dataset.theme =
+        theme === "dark" ? "dark" : "light";
+    })();
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Palavra de Domingo - Início">
+      <span class="brand-mark">P</span>
+      <span class="brand-name">
+        Palavra de Domingo
+        <small>Uma palavra para continuar</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="mensagens.html">Biblioteca</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="igreja.html">A igreja</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top" data-dynamic-message>
+  <section class="page-hero">
+    <div class="container">
+      <a class="back-link" href="mensagens.html">← Voltar à biblioteca</a>
+      <span class="eyebrow" id="message-category">Carregando mensagem...</span>
+      <h1 id="message-title">Carregando...</h1>
+      <p id="message-excerpt">Aguarde um instante.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container article-layout">
+
+      <article class="article">
+        <div class="article-meta">
+          <span id="message-reference">📖</span>
+          <span id="message-status">Mensagem</span>
+        </div>
+
+        <p class="article-lead" id="message-lead"></p>
+
+        <div id="message-body"></div>
+
+        <div class="reflection">
+          <h2>Minha reflexão pessoal</h2>
+          <p id="reflection-prompt">
+            Reserve um momento para escrever suas próprias percepções e aprendizados.
+          </p>
+
+          <textarea
+            id="personal-reflection"
+            data-reflection-id=""
+            placeholder="Escreva aqui suas reflexões..."
+            aria-label="Minha reflexão pessoal"
+          ></textarea>
+
+          <p class="saved-note">
+            Suas anotações ficam salvas neste dispositivo.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="share-message"
+            data-share="Confira esta mensagem no Palavra de Domingo."
+          >
+            Compartilhar mensagem ↗
+          </button>
+
+          <a class="btn btn-secondary" href="mensagens.html">
+            Voltar à biblioteca
+          </a>
+        </div>
+
+        <div class="notice" id="demonstration-notice" style="margin-top:28px" hidden>
+          Este é um conteúdo demonstrativo. Não representa necessariamente uma mensagem pregada em um culto específico.
+        </div>
+      </article>
+
+      <aside class="article-aside">
+        <div class="aside-card">
+          <h3>Nesta reflexão</h3>
+          <nav id="message-toc">
+            <a href="#top">Início</a>
+          </nav>
+        </div>
+
+        <div class="aside-card">
+          <h3>Leitura bíblica</h3>
+          <p id="aside-reference">Consulte a referência bíblica acima.</p>
+          <p style="color:var(--muted);font-size:.85rem">
+            Leia o texto bíblico completo em sua Bíblia.
+          </p>
+        </div>
+
+        <div class="aside-card">
+          <h3>Continue explorando</h3>
+          <div id="related-messages">
+            <a href="mensagens.html">Ver biblioteca →</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Palavra de Domingo</h3>
+        <p>Uma palavra para continuar. Um espaço independente de reflexão e aprendizado.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p><a href="mensagens.html">Biblioteca</a></p>
+        <p><a href="sobre.html">Sobre o projeto</a></p>
+      </div>
+      <div>
+        <h3>Comunhão</h3>
+        <p><a href="igreja.html">Conheça a igreja</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Palavra de Domingo. Projeto independente, sem vínculo institucional oficial.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="mensagem.js"></script>
+</body>
+        </html>
+          
