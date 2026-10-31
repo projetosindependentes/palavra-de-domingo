@@ -168,6 +168,16 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
       }
     }
 
+        // Imagem de capa configurada pelo CMS
+    if (homeHero && config.homeImage) {
+      const imagePath = String(config.homeImage).replace(/^\/+/, "");
+
+      homeHero.classList.add("has-background-image");
+
+      homeHero.style.backgroundImage =
+        `linear-gradient(rgba(16, 43, 73, 0.78), rgba(16, 43, 73, 0.65)), url("${siteUrl(imagePath)}")`;
+    }
+    
     // Rodapés
     document.querySelectorAll(".site-footer").forEach(footer => {
       const heading = footer.querySelector(".footer-grid h3");
