@@ -15,8 +15,7 @@ content:
         label: Endereço da mensagem
         type: string
         required: true
-        description: Use apenas letras minúsculas e hífens. Exemplo: minha-mensagem
-
+        description: "Use apenas letras minúsculas e hífens. Exemplo: minha-mensagem"
       - name: title
         label: Título
         type: string
