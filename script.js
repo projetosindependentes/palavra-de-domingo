@@ -147,8 +147,9 @@
     });
 
     // Página inicial
-    const homeHero = document.querySelector(".hero");
-
+    const pageName = window.location.pathname.split("/").pop();
+const isHomePage = pageName === "" || pageName === "index.html";
+const homeHero = isHomePage ? document.querySelector(".hero") : null;
     if (homeHero) {
       const eyebrow = homeHero.querySelector(".eyebrow");
       const title = homeHero.querySelector("h1");
