@@ -1,9 +1,9 @@
 
 :root {
   color-scheme: light;
-  --navy: #17395F;
-  --blue: #2E5F91;
-  --gold: #D6B45B;
+--navy: var(--brand-primary, #17395F);
+--blue: var(--brand-secondary, #2E5F91);
+--gold: var(--brand-accent, #D6B45B);
   --bg: #F4F6F9;
   --surface: #FFFFFF;
   --surface-2: #EAF0F6;
@@ -564,17 +564,17 @@ h1 {
 }
 /* CORREÇÕES DE CONTRASTE DOS BOTÕES */
 .brand-mark {
-  background: #17395F;
+  background: var(--brand-primary, #17395F);
   color: #FFFFFF;
 }
 
 .btn-primary {
-  background: #17395F;
+  background: var(--brand-primary, #17395F);
   color: #FFFFFF;
 }
 
 .filter-btn.active {
-  background: #17395F;
+  background: var(--brand-primary, #17395F);
   color: #FFFFFF;
-  border-color: #17395F;
+  border-color: var(--brand-primary, #17395F);
 }
