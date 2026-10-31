@@ -578,3 +578,20 @@ h1 {
   color: #FFFFFF;
   border-color: var(--brand-primary, #17395F);
 }
+
+/* Imagem de capa configurada pelo CMS */
+.hero.has-background-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+}
+
+.hero.has-background-image .eyebrow,
+.hero.has-background-image h1 {
+  color: #FFFFFF;
+}
+
+.hero.has-background-image p {
+  color: #F1F5F9;
+}
