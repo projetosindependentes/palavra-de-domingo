@@ -409,8 +409,10 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
     if (!card) return;
 
     const featured = publishedMessages.find(
-      message => message.featured === true
-    );
+  message =>
+    message.featured === true &&
+    message.demonstration !== true
+   );
 
     if (!featured) {
       card.hidden = true;
