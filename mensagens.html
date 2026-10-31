@@ -27,7 +27,7 @@
       </span>
     </a>
 
-    <nav class="nav" aria-label="Navegação principal">
+    <nav class="nav" id="main-navigation" aria-label="Navegação principal">
       <a href="index.html">Início</a>
       <a href="mensagens.html" aria-current="page">Biblioteca</a>
       <a href="sobre.html">Sobre</a>
@@ -36,7 +36,10 @@
 
     <div class="header-actions">
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <button class="menu-toggle" id="menu-toggle" type="button"
+  aria-label="Abrir menu"
+  aria-expanded="false"
+  aria-controls="main-navigation">☰</button>
     </div>
   </div>
 </header>
