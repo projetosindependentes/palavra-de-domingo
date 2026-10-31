@@ -146,7 +146,7 @@ content:
         label: Cor de destaque
         type: string
 
-            - name: projectNotice
+      - name: projectNotice
         label: Aviso sobre o projeto
         type: text
 
