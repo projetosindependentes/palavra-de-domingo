@@ -100,28 +100,35 @@
   // ==================================================
 
   const menuButton = document.querySelector(
-    "#menu-toggle, [data-menu-toggle]"
+  "#menu-toggle, [data-menu-toggle]"
+);
+
+const navigation = document.querySelector("#main-navigation, .nav");
+
+menuButton?.addEventListener("click", () => {
+  const isOpen = navigation?.classList.toggle("open") ?? false;
+
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Fechar menu" : "Abrir menu"
   );
 
-  const navigation = document.querySelector(".nav");
+  menuButton.textContent = isOpen ? "×" : "☰";
+});
 
-  menuButton?.addEventListener("click", () => {
-    const isOpen = navigation?.classList.toggle("open");
+navigation?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
 
-    menuButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "Abrir menu");
 
-    menuButton.setAttribute(
-      "aria-label",
-      isOpen ? "Fechar menu" : "Abrir menu"
-    );
+    if (menuButton) {
+      menuButton.textContent = "☰";
+    }
   });
-
-  navigation?.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navigation.classList.remove("open");
-      menuButton?.setAttribute("aria-expanded", "false");
-    });
-  });
+});
 
   // ==================================================
   // CONFIGURAÇÕES EDITÁVEIS DO SITE
