@@ -147,6 +147,32 @@ content:
         type: string
 
       - name: projectNotice
-        label: Aviso sobre o projeto
-        type: text
-        
+              - name: homeImage
+        label: Imagem de capa da página inicial
+        type: image
+        options:
+          extensions: [jpg, jpeg, png, webp]
+          rename: true
+
+      - name: churchImage
+        label: Foto da igreja
+        type: image
+        options:
+          extensions: [jpg, jpeg, png, webp]
+          rename: true
+
+      - name: instagramUrl
+        label: Instagram
+        type: string
+
+      - name: facebookUrl
+        label: Facebook
+        type: string
+
+      - name: youtubeUrl
+        label: YouTube
+        type: string
+
+      - name: whatsappUrl
+        label: WhatsApp
+        type: string
