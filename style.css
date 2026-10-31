@@ -545,19 +545,21 @@ h1 {
 .hidden { display: none !important; }
 
 @media (max-width: 800px) {
-  .nav {
-    display: none;
-    position: absolute;
-    top: 76px;
-    left: 0;
-    right: 0;
-    padding: 18px 22px 22px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--line);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
+    .nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 18px 22px 22px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  z-index: 19;
+    }
 
   .nav.open { display: flex; }
   .menu-toggle { display: grid; }
@@ -573,7 +575,6 @@ h1 {
 @media (max-width: 540px) {
   .container { width: min(100% - 30px, 1120px); }
   .header-inner { height: 68px; }
-  .nav { top: 68px; }
   .brand-mark { width: 38px; height: 38px; }
   .brand-name { font-size: .95rem; }
   .hero { padding: 55px 0 45px; }
