@@ -217,7 +217,16 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         proposal.textContent = config.aboutProposal;
       }
     }
+    // Imagem da igreja configurada pelo CMS
+    const churchImage = document.querySelector("#church-image");
+    const churchImageWrap = document.querySelector("#church-image-wrap");
 
+    if (churchImage && churchImageWrap && config.churchImage) {
+      const imagePath = String(config.churchImage).replace(/^\/+/, "");
+
+      churchImage.src = siteUrl(imagePath);
+      churchImageWrap.hidden = false;
+    }
     // Informações da página da igreja
     const churchHeading = [...document.querySelectorAll("h2")]
       .find(element => element.textContent.trim() === "IEQ Resgate");
