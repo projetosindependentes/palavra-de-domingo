@@ -1,0 +1,153 @@
+
+media:
+  input: media
+  output: /media
+
+content:
+  - name: messages
+    label: Mensagens
+    type: file
+    path: content/messages.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Endereço da mensagem
+        type: string
+        required: true
+        description: Use apenas letras minúsculas e hífens. Exemplo: minha-mensagem
+
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: category
+        label: Categoria
+        type: select
+        options:
+          values:
+            - label: Vida
+              value: vida
+            - label: Fé
+              value: fe
+            - label: Identidade
+              value: identidade
+
+      - name: reference
+        label: Referência bíblica
+        type: string
+
+      - name: excerpt
+        label: Resumo
+        type: text
+
+      - name: published
+        label: Publicada
+        type: boolean
+
+      - name: featured
+        label: Destaque na página inicial
+        type: boolean
+
+      - name: demonstration
+        label: Conteúdo demonstrativo
+        type: boolean
+
+      - name: reflectionPrompt
+        label: Pergunta para reflexão
+        type: text
+
+      - name: body
+        label: Conteúdo completo
+        type: rich-text
+        options:
+          format: html
+          media: false
+
+  - name: site
+    label: Configurações do site
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: siteName
+        label: Nome do projeto
+        type: string
+
+      - name: tagline
+        label: Frase do projeto
+        type: string
+
+      - name: homeEyebrow
+        label: Texto pequeno da página inicial
+        type: string
+
+      - name: homeTitle
+        label: Título principal
+        type: string
+
+      - name: homeDescription
+        label: Descrição da página inicial
+        type: text
+
+      - name: featuredTitle
+        label: Título da seção de destaque
+        type: string
+
+      - name: featuredDescription
+        label: Descrição da seção de destaque
+        type: text
+
+      - name: aboutTitle
+        label: Título sobre o projeto
+        type: string
+
+      - name: aboutDescription
+        label: Descrição sobre o projeto
+        type: text
+
+      - name: aboutProposal
+        label: Proposta do projeto
+        type: text
+
+      - name: churchName
+        label: Nome da igreja
+        type: string
+
+      - name: churchAddress
+        label: Endereço
+        type: string
+
+      - name: churchNeighborhood
+        label: Bairro
+        type: string
+
+      - name: churchCity
+        label: Cidade
+        type: string
+
+      - name: youthService
+        label: Horário do culto
+        type: string
+
+      - name: churchMapUrl
+        label: Link do Google Maps
+        type: string
+
+      - name: primaryColor
+        label: Cor principal
+        type: string
+
+      - name: secondaryColor
+        label: Cor secundária
+        type: string
+
+      - name: accentColor
+        label: Cor de destaque
+        type: string
+
+      - name: projectNotice
+        label: Aviso sobre o projeto
+        type: text
+        
