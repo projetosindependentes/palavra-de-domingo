@@ -23,7 +23,7 @@
       <span class="brand-mark">P</span>
       <span class="brand-name">Palavra de Domingo<small>Uma palavra para continuar</small></span>
     </a>
-    <nav class="nav" aria-label="Navegação principal">
+    <nav class="nav" id="main-navigation" aria-label="Navegação principal">
       <a href="../index.html">Início</a>
       <a href="../mensagens.html">Biblioteca</a>
       <a href="../sobre.html">Sobre</a>
@@ -31,7 +31,10 @@
     </nav>
     <div class="header-actions">
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+     <button class="menu-toggle" id="menu-toggle" type="button"
+  aria-label="Abrir menu"
+  aria-expanded="false"
+  aria-controls="main-navigation">☰</button>
     </div>
   </div>
 </header>
@@ -116,13 +119,16 @@
         </p>
 
         <div class="reflection">
-          <h2>Minha reflexão pessoal</h2>
-          <p>Escreva o que essa passagem ensina sobre sua identidade e suas escolhas.</p>
-          <textarea
-            data-reflection-id="demo3"
-            placeholder="Que dons posso desenvolver? Como posso servir outras pessoas?"
-            aria-label="Minha reflexão pessoal"
-          ></textarea>
+  <h2>Minha reflexão pessoal</h2>
+  <p>Escreva o que essa passagem ensina sobre sua identidade e suas escolhas.</p>
+
+  <textarea
+    data-reflection-id="proposito"
+    placeholder="Que dons posso desenvolver? Como posso servir outras pessoas?"
+    aria-label="Minha reflexão pessoal"
+  ></textarea>
+
+  <p class="saved-note">Suas anotações ficam salvas neste dispositivo.</p>
         </div>
 
         <div class="hero-actions">
