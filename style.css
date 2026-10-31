@@ -562,3 +562,19 @@ h1 {
   .search-box { width: 100%; margin-bottom: 12px; }
   .hero-actions .btn { width: 100%; }
 }
+/* CORREÇÕES DE CONTRASTE DOS BOTÕES */
+.brand-mark {
+  background: #17395F;
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  background: #17395F;
+  color: #FFFFFF;
+}
+
+.filter-btn.active {
+  background: #17395F;
+  color: #FFFFFF;
+  border-color: #17395F;
+}
