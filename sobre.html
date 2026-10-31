@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17395F">
+  <meta name="description" content="Conheça a proposta, os princípios e os objetivos do projeto independente Palavra de Domingo.">
+  <title>Sobre o projeto | Palavra de Domingo</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (() => {
+      const theme = localStorage.getItem("pdd-theme");
+      document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+    })();
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span class="brand-name">Palavra de Domingo<small>Uma palavra para continuar</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="mensagens.html">Biblioteca</a>
+      <a href="sobre.html" aria-current="page">Sobre</a>
+      <a href="igreja.html">A igreja</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Conheça o projeto</span>
+      <h1>Uma palavra para continuar.</h1>
+      <p>
+        O Palavra de Domingo nasceu da ideia de que aquilo que aprendemos
+        durante um culto pode continuar produzindo frutos ao longo da semana.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="content-panel">
+        <span class="eyebrow">Nossa proposta</span>
+        <h2>Mais do que recordar, aprofundar.</h2>
+        <p>
+          Este projeto independente busca organizar reflexões, referências
+          bíblicas e aprendizados relacionados às mensagens de domingo.
+          A proposta é oferecer um espaço de consulta que facilite a
+          continuidade do estudo e da reflexão pessoal.
+        </p>
+        <p>
+          Acreditamos que uma mensagem não precisa ficar restrita ao
+          momento em que foi compartilhada. Podemos revisitar seus
+          ensinamentos, examinar as Escrituras e pensar em como
+          colocá-los em prática.
+        </p>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">O que nos orienta</span>
+          <h2>Princípios do projeto</h2>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>📖 Centralidade bíblica</strong>
+          <p>Valorizar as Escrituras e incentivar a leitura dos textos bíblicos em seu contexto.</p>
+        </div>
+
+        <div class="info-item">
+          <strong>🤝 Comunhão</strong>
+          <p>Reconhecer que a fé também é vivida em comunidade, por meio da convivência e do discipulado.</p>
+        </div>
+
+        <div class="info-item">
+          <strong>🌱 Crescimento</strong>
+          <p>Estimular a reflexão, o aprendizado contínuo e a aplicação prática dos ensinamentos.</p>
+        </div>
+
+        <div class="info-item">
+          <strong>🔎 Responsabilidade</strong>
+          <p>Tratar as mensagens com cuidado, conferindo informações e respeitando as pessoas envolvidas.</p>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <span class="eyebrow">Transparência</span>
+        <h2>Um projeto independente.</h2>
+        <p>
+          O Palavra de Domingo é uma iniciativa pessoal e independente.
+          Não é um canal oficial da Igreja do Evangelho Quadrangular,
+          não representa sua liderança e não fala institucionalmente
+          em nome da igreja.
+        </p>
+        <p>
+          A publicação de conteúdos relacionados a mensagens reais
+          depende de conferência e das autorizações necessárias.
+          Eventuais materiais demonstrativos são identificados como tais.
+        </p>
+      </div>
+
+      <div class="content-panel">
+        <span class="eyebrow">Um convite</span>
+        <h2>Que a reflexão continue na vida.</h2>
+        <p>
+          Use este espaço para revisitar uma mensagem, consultar
+          uma passagem bíblica e registrar suas percepções.
+          Mas não deixe que a experiência digital substitua
+          a leitura pessoal da Bíblia, a comunhão e a participação
+          na igreja local.
+        </p>
+        <a class="btn btn-primary" href="mensagens.html">Explorar biblioteca →</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Palavra de Domingo</h3>
+        <p>Uma palavra para continuar. Um espaço independente de reflexão e aprendizado.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p><a href="index.html">Início</a></p>
+        <p><a href="mensagens.html">Biblioteca</a></p>
+      </div>
+      <div>
+        <h3>Comunhão</h3>
+        <p><a href="igreja.html">Conheça a igreja</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Palavra de Domingo. Projeto independente, sem vínculo institucional oficial.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+          </html>
+          
