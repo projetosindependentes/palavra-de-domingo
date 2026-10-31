@@ -512,41 +512,65 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
     });
   }
 
+
   // ==================================================
   // SALVAR REFLEXÕES NO DISPOSITIVO
   // ==================================================
 
-  document.querySelectorAll("[data-reflection-id]").forEach(textarea => {
-    const id = textarea.dataset.reflectionId;
+  function setupReflections() {
+    document.querySelectorAll("[data-reflection-id]").forEach(textarea => {
+      const id = textarea.dataset.reflectionId;
 
-    if (!id) return;
+      if (!id || textarea.dataset.reflectionReady === "true") return;
 
-    const storageKey = `pdd-reflection-${id}`;
+      const storageKey = `pdd-reflection-${id}`;
 
-    const savedText = localStorage.getItem(storageKey);
+      const savedText = localStorage.getItem(storageKey);
 
-    if (savedText !== null) {
-      textarea.value = savedText;
-    }
+      if (savedText !== null) {
+        textarea.value = savedText;
+      }
 
-    let saveStatus = textarea.parentElement?.querySelector(".saved-note");
+      let saveStatus = textarea.parentElement?.querySelector(".saved-note");
 
-    if (!saveStatus) {
-      saveStatus = document.createElement("p");
-      saveStatus.className = "saved-note";
-      textarea.insertAdjacentElement("afterend", saveStatus);
-    }
-
-    saveStatus.textContent =
-      "Suas anotações ficam salvas neste dispositivo.";
-
-    textarea.addEventListener("input", () => {
-      localStorage.setItem(storageKey, textarea.value);
+      if (!saveStatus) {
+        saveStatus = document.createElement("p");
+        saveStatus.className = "saved-note";
+        textarea.insertAdjacentElement("afterend", saveStatus);
+      }
 
       saveStatus.textContent =
-        "Reflexão salva neste dispositivo ✓";
+        "Suas anotações ficam salvas neste dispositivo.";
+
+      textarea.addEventListener("input", () => {
+        localStorage.setItem(storageKey, textarea.value);
+
+        saveStatus.textContent =
+          "Reflexão salva neste dispositivo ✓";
+      });
+
+      textarea.dataset.reflectionReady = "true";
     });
-  });
+  }
+
+  function setupDynamicReflection() {
+    const textarea = document.querySelector(
+      "#personal-reflection[data-reflection-id]"
+    );
+
+    if (!textarea) return;
+
+    const slug = new URLSearchParams(window.location.search).get("slug");
+
+    if (!slug) return;
+
+    textarea.dataset.reflectionId = slug;
+
+    setupReflections();
+  }
+
+  setupReflections();
+  setupDynamicReflection();
 
   // ==================================================
   // COMPARTILHAR MENSAGENS
