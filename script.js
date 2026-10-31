@@ -343,12 +343,7 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
 
     // Verifica se uma mensagem está liberada para publicação
   function isPublished(message) {
-    if (message.status) {
-      return message.status === "publicado";
-    }
-
-    // Compatibilidade temporária com o campo antigo
-    return message.published === true;
+  return message.status === "publicado";
   }
   
   function createMessageCard(message) {
