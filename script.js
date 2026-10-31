@@ -193,7 +193,53 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
           `© ${new Date().getFullYear()} ${config.siteName}. ${config.projectNotice}`;
       }
     });
+    // Redes sociais configuradas pelo CMS
+    document.querySelectorAll(".site-footer").forEach(footer => {
+      const oldSocial = footer.querySelector(".footer-social");
 
+      if (oldSocial) oldSocial.remove();
+
+      const socialLinks = [
+        { name: "Instagram", url: config.instagramUrl },
+        { name: "Facebook", url: config.facebookUrl },
+        { name: "YouTube", url: config.youtubeUrl },
+        { name: "WhatsApp", url: config.whatsappUrl }
+      ];
+
+      const validLinks = socialLinks.filter(item => {
+        if (!item.url) return false;
+
+        try {
+          const url = new URL(item.url);
+          return url.protocol === "https:" || url.protocol === "http:";
+        } catch {
+          return false;
+        }
+      });
+
+      if (validLinks.length > 0) {
+        const section = document.createElement("div");
+        section.className = "footer-social";
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Redes sociais";
+
+        section.appendChild(heading);
+
+        validLinks.forEach(item => {
+          const link = document.createElement("a");
+
+          link.href = item.url;
+          link.textContent = item.name;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+
+          section.appendChild(link);
+        });
+
+        footer.querySelector(".footer-grid")?.appendChild(section);
+      }
+    });
     // Informações da página Sobre
     if (document.querySelector(".content-panel")) {
       const aboutHeading = [...document.querySelectorAll(".content-panel h2")]
