@@ -167,7 +167,24 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         description.textContent = config.homeDescription;
       }
     }
+    
+    // Título e descrição da seção em destaque
+    const featuredCard = document.querySelector(".featured-card");
+    const featuredSection = featuredCard?.closest(".section");
 
+    if (featuredSection) {
+      const sectionTitle = featuredSection.querySelector(".section-head h2");
+      const sectionDescription = featuredSection.querySelector(".section-head p");
+
+      if (sectionTitle && config.featuredTitle) {
+        sectionTitle.textContent = config.featuredTitle;
+      }
+
+      if (sectionDescription && config.featuredDescription) {
+        sectionDescription.textContent = config.featuredDescription;
+      }
+        }
+    
         // Imagem de capa configurada pelo CMS
     if (homeHero && config.homeImage) {
       const imagePath = String(config.homeImage).replace(/^\/+/, "");
