@@ -469,11 +469,13 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         .slice(0, 3);
 
       homeGrid.innerHTML = otherMessages
-        .map(createMessageCard)
-        .join("");
-    }
+  .map(createMessageCard)
+  .join("");
+}
+
+renderFeaturedMessage(publishedMessages);
   }
-    
+  
   // ==================================================
   // CARREGAR MENSAGEM INDIVIDUAL
   // ==================================================
@@ -573,10 +575,6 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         toc.appendChild(link);
       });
     }
-  }
-    
-    // Mensagem em destaque
-    renderFeaturedMessage(publishedMessages);
   }
 
   function renderFeaturedMessage(publishedMessages) {
