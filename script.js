@@ -782,20 +782,21 @@ renderFeaturedMessage(publishedMessages);
   // ==================================================
 
   async function initializeContent() {
-    try {
-      const [config, messageData] = await Promise.all([
-        loadJSON("content/site.json"),
-        loadJSON("content/messages.json")
-      ]);
+  try {
+    const [config, messageData] = await Promise.all([
+      loadJSON("content/site.json"),
+      loadJSON("content/messages.json")
+    ]);
 
-      siteConfig = config;
-      messages = Array.isArray(messageData) ? messageData : [];
+    siteConfig = config;
+    messages = Array.isArray(messageData) ? messageData : [];
 
-      applySiteConfig(config);
-      renderMessageLists();
-      renderDynamicMessage();
+    applySiteConfig(config);
+    renderMessageLists();
+    renderDynamicMessage();
 
-      console.info("Palavra de Domingo: conteúdos carregados.");
+    console.info("Palavra de Domingo: conteúdos carregados.");
+
   } catch (error) {
     console.error("Erro ao carregar os conteúdos do site:", error);
 
@@ -803,5 +804,6 @@ renderFeaturedMessage(publishedMessages);
 
     if (errorNotice) {
       errorNotice.hidden = false;
-      }
     }
+  }
+  }
