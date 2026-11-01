@@ -534,7 +534,7 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
     }
 
     if (body) {
-      body.innerHTML = message.body || "";
+      body.innerHTML = sanitizeMessageHTML(message.body || "");
     }
 
     if (notice) {
