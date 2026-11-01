@@ -718,6 +718,7 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
 
       applySiteConfig(config);
       renderMessageLists();
+      renderDynamicMessage();
 
       console.info("Palavra de Domingo: conteúdos carregados.");
     } catch (error) {
