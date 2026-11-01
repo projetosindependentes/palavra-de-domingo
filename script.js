@@ -179,6 +179,20 @@ menuButton?.addEventListener("click", () => {
   menuButton.textContent = isOpen ? "×" : "☰";
 });
 
+  document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && navigation?.classList.contains("open")) {
+    navigation.classList.remove("open");
+
+    menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "Abrir menu");
+
+    if (menuButton) {
+      menuButton.textContent = "☰";
+      menuButton.focus();
+    }
+  }
+});
+
 navigation?.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", () => {
     navigation.classList.remove("open");
