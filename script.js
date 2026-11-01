@@ -371,8 +371,13 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
       const imagePath = String(config.churchImage).replace(/^\/+/, "");
 
       churchImage.src = siteUrl(imagePath);
-      churchImageWrap.hidden = false;
-    }
+
+if (!churchImage.hasAttribute("alt")) {
+  churchImage.alt = "Imagem da IEQ Resgate";
+}
+
+churchImageWrap.hidden = false;
+     }
     // Informações da página da igreja
     const churchHeading = [...document.querySelectorAll("h2")]
       .find(element => element.textContent.trim() === "IEQ Resgate");
