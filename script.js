@@ -26,7 +26,15 @@
   // ==================================================
 
   function escapeHTML(value = "") {
-    
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
 function sanitizeMessageHTML(html = "") {
   const template = document.createElement("template");
   template.innerHTML = String(html);
@@ -37,10 +45,6 @@ function sanitizeMessageHTML(html = "") {
     "A", "BR", "HR"
   ]);
 
-  const allowedAttributes = {
-    A: ["href", "title"]
-  };
-
   function cleanNode(node) {
     [...node.childNodes].forEach(child => {
       if (child.nodeType === Node.COMMENT_NODE) {
@@ -50,15 +54,19 @@ function sanitizeMessageHTML(html = "") {
 
       if (child.nodeType !== Node.ELEMENT_NODE) return;
 
+      cleanNode(child);
+
       if (!allowedTags.has(child.tagName)) {
         child.replaceWith(...child.childNodes);
         return;
       }
 
       [...child.attributes].forEach(attribute => {
-        const allowed = allowedAttributes[child.tagName] || [];
+        const allowed =
+          child.tagName === "A" &&
+          ["href", "title"].includes(attribute.name.toLowerCase());
 
-        if (!allowed.includes(attribute.name.toLowerCase())) {
+        if (!allowed) {
           child.removeAttribute(attribute.name);
         }
       });
@@ -78,8 +86,6 @@ function sanitizeMessageHTML(html = "") {
           child.removeAttribute("href");
         }
       }
-
-      cleanNode(child);
     });
   }
 
@@ -87,16 +93,6 @@ function sanitizeMessageHTML(html = "") {
 
   return template.innerHTML;
 }
-    
-    return String(value).replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    })[char]);
-  }
-
   function messageUrl(message) {
     const existingPages = {
       permanecer: "mensagens/permanecer.html",
