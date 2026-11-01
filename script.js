@@ -796,12 +796,12 @@ renderFeaturedMessage(publishedMessages);
       renderDynamicMessage();
 
       console.info("Palavra de Domingo: conteúdos carregados.");
-    } catch (error) {
-      console.error("Erro ao carregar os conteúdos do site:", error);
+  } catch (error) {
+    console.error("Erro ao carregar os conteúdos do site:", error);
+
+    const errorNotice = document.querySelector("#content-error");
+
+    if (errorNotice) {
+      errorNotice.hidden = false;
+      }
     }
-  }
-
-  initializeContent();
-
-})();
-                               
