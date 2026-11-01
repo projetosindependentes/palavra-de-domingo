@@ -472,7 +472,7 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
         .map(createMessageCard)
         .join("");
     }
-
+  }
     
   // ==================================================
   // CARREGAR MENSAGEM INDIVIDUAL
