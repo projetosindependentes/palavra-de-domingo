@@ -687,3 +687,14 @@ h1 {
     text-align: left;
   }
 }
+
+/* ACESSIBILIDADE: FOCO VISÍVEL */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Evita destaque duplicado em elementos específicos */
+:focus:not(:focus-visible) {
+  outline: none;
+}
