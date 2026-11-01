@@ -45,6 +45,6 @@
     "featured": false,
     "demonstration": true,
     "reflectionPrompt": "O que aprendi com este teste?",
-    "body": "<p>Esta é uma mensagem de teste criada diretamente pelo Pages CMS.</p><p>Uma nova publicação</p><p>Se este conteúdo aparecer no site, significa que a integração entre o painel e o arquivo JSON está funcionando.</p><p>O Senhor é o meu pastor; nada me faltará. — Salmos 23:1</p><p></p><p>&lt;p&gt;Teste de segurança&lt;/p&gt;</p><p>&lt;a href=\"javascript:alert('teste')\"&gt;Clique aqui&lt;/a&gt;</p>"
+    "body": "<p>Esta é uma mensagem de teste criada diretamente pelo Pages CMS.</p><p>Uma nova publicação</p><p>Se este conteúdo aparecer no site, significa que a integração entre o painel e o arquivo JSON está funcionando.</p><p>O Senhor é o meu pastor; nada me faltará. — Salmos 23:1</p><p>&lt;p&gt;Teste de segurança&lt;/p&gt;</p><p>&lt;a href=\"javascript:alert('teste')\"&gt;Clique aqui&lt;/a&gt;</p>"
   }
 ]
