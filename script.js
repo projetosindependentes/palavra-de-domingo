@@ -26,6 +26,68 @@
   // ==================================================
 
   function escapeHTML(value = "") {
+    
+function sanitizeMessageHTML(html = "") {
+  const template = document.createElement("template");
+  template.innerHTML = String(html);
+
+  const allowedTags = new Set([
+    "P", "H2", "H3", "UL", "OL", "LI",
+    "BLOCKQUOTE", "STRONG", "B", "EM", "I",
+    "A", "BR", "HR"
+  ]);
+
+  const allowedAttributes = {
+    A: ["href", "title"]
+  };
+
+  function cleanNode(node) {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.COMMENT_NODE) {
+        child.remove();
+        return;
+      }
+
+      if (child.nodeType !== Node.ELEMENT_NODE) return;
+
+      if (!allowedTags.has(child.tagName)) {
+        child.replaceWith(...child.childNodes);
+        return;
+      }
+
+      [...child.attributes].forEach(attribute => {
+        const allowed = allowedAttributes[child.tagName] || [];
+
+        if (!allowed.includes(attribute.name.toLowerCase())) {
+          child.removeAttribute(attribute.name);
+        }
+      });
+
+      if (child.tagName === "A") {
+        const href = child.getAttribute("href");
+
+        try {
+          const url = new URL(href, window.location.origin);
+
+          if (!["http:", "https:"].includes(url.protocol)) {
+            child.removeAttribute("href");
+          } else {
+            child.setAttribute("rel", "noopener noreferrer");
+          }
+        } catch {
+          child.removeAttribute("href");
+        }
+      }
+
+      cleanNode(child);
+    });
+  }
+
+  cleanNode(template.content);
+
+  return template.innerHTML;
+}
+    
     return String(value).replace(/[&<>"']/g, char => ({
       "&": "&amp;",
       "<": "&lt;",
