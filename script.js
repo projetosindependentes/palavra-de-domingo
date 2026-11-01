@@ -806,4 +806,9 @@ renderFeaturedMessage(publishedMessages);
       errorNotice.hidden = false;
     }
   }
-  }
+
+  } // fechamento do catch/função initializeContent
+
+  initializeContent();
+
+})();
