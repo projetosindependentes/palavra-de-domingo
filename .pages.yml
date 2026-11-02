@@ -143,11 +143,20 @@ content:
 
       - name: gallery
         label: Galeria de imagens
-        type: image
+        type: object
         list: true
-        options:
-          media: images
-          extensions: [jpg, jpeg, png, webp]
+        fields:
+      - name: image
+            label: Fotografia
+            type: image
+            options:
+              media: images
+              extensions: [jpg, jpeg, png, webp]
+
+      - name: imageAlt
+            label: Descrição acessível da fotografia
+            type: text
+            description: "Descreva o que aparece na foto. Se ela for puramente decorativa, deixe vazio."
 
       - name: registrationUrl
         label: Link de inscrição
