@@ -1,7 +1,12 @@
 
 media:
-  input: media
-  output: /media
+  - name: images
+    label: Imagens
+    input: media
+    output: /media
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: safe
 
 content:
   - name: messages
@@ -71,7 +76,10 @@ content:
         type: rich-text
         options:
           format: html
-          media: false
+          media: images
+          path: mensagens
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
 
   - name: site
     label: Configurações do site
@@ -163,6 +171,7 @@ content:
         label: Imagem de capa da página inicial
         type: image
         options:
+          media: images
           extensions: [jpg, jpeg, png, webp]
           rename: true
 
@@ -170,6 +179,7 @@ content:
         label: Foto da igreja
         type: image
         options:
+          media: images
           extensions: [jpg, jpeg, png, webp]
           rename: true
 
