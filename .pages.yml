@@ -127,6 +127,254 @@ content:
         label: Proposta do projeto
         type: text
 
+      # PÁGINA INICIAL
+
+      - name: homeLibraryEyebrow
+        label: Início — texto da biblioteca
+        type: string
+
+      - name: homeLibraryTitle
+        label: Início — título da biblioteca
+        type: string
+
+      - name: homeLibraryDescription
+        label: Início — descrição da biblioteca
+        type: text
+
+      - name: homeLibraryLink
+        label: Início — botão da biblioteca
+        type: string
+
+      - name: homeCommunityEyebrow
+        label: Início — texto da comunidade
+        type: string
+
+      - name: homeCommunityTitle
+        label: Início — título da comunidade
+        type: string
+
+      - name: homeCommunityDescription
+        label: Início — descrição da comunidade
+        type: text
+
+      - name: homeCommunityButton
+        label: Início — botão da comunidade
+        type: string
+
+      # PÁGINA SOBRE
+
+      - name: aboutHeroEyebrow
+        label: Sobre — texto do cabeçalho
+        type: string
+
+      - name: aboutProposalEyebrow
+        label: Sobre — texto da proposta
+        type: string
+
+      - name: aboutProposalTitle
+        label: Sobre — título da proposta
+        type: string
+
+      - name: aboutProposalParagraph2
+        label: Sobre — segundo parágrafo da proposta
+        type: text
+
+      - name: aboutPrinciplesEyebrow
+        label: Sobre — texto dos princípios
+        type: string
+
+      - name: aboutPrinciplesTitle
+        label: Sobre — título dos princípios
+        type: string
+
+      - name: aboutPrinciple1Title
+        label: Princípio 1 — título
+        type: string
+
+      - name: aboutPrinciple1Text
+        label: Princípio 1 — descrição
+        type: text
+
+      - name: aboutPrinciple2Title
+        label: Princípio 2 — título
+        type: string
+
+      - name: aboutPrinciple2Text
+        label: Princípio 2 — descrição
+        type: text
+
+      - name: aboutPrinciple3Title
+        label: Princípio 3 — título
+        type: string
+
+      - name: aboutPrinciple3Text
+        label: Princípio 3 — descrição
+        type: text
+
+      - name: aboutPrinciple4Title
+        label: Princípio 4 — título
+        type: string
+
+      - name: aboutPrinciple4Text
+        label: Princípio 4 — descrição
+        type: text
+
+      - name: aboutTransparencyEyebrow
+        label: Sobre — texto da transparência
+        type: string
+
+      - name: aboutTransparencyTitle
+        label: Sobre — título da transparência
+        type: string
+
+      - name: aboutTransparencyParagraph1
+        label: Sobre — transparência, primeiro parágrafo
+        type: text
+
+      - name: aboutTransparencyParagraph2
+        label: Sobre — transparência, segundo parágrafo
+        type: text
+
+      - name: aboutInvitationEyebrow
+        label: Sobre — texto do convite
+        type: string
+
+      - name: aboutInvitationTitle
+        label: Sobre — título do convite
+        type: string
+
+      - name: aboutInvitationDescription
+        label: Sobre — descrição do convite
+        type: text
+
+      - name: aboutInvitationButton
+        label: Sobre — botão do convite
+        type: string
+
+      # PÁGINA A IGREJA
+
+      - name: churchHeroEyebrow
+        label: Igreja — texto do cabeçalho
+        type: string
+
+      - name: churchHeroTitle
+        label: Igreja — título do cabeçalho
+        type: string
+
+      - name: churchHeroDescription
+        label: Igreja — descrição do cabeçalho
+        type: text
+
+      - name: churchVisitButton
+        label: Igreja — botão de visita
+        type: string
+
+      - name: churchBackButton
+        label: Igreja — botão de retorno
+        type: string
+
+      - name: churchIntroEyebrow
+        label: Igreja — texto da apresentação
+        type: string
+
+      - name: churchIntroTitle
+        label: Igreja — título da apresentação
+        type: string
+
+      - name: churchIntroParagraph1
+        label: Igreja — apresentação, primeiro parágrafo
+        type: text
+
+      - name: churchIntroParagraph2
+        label: Igreja — apresentação, segundo parágrafo
+        type: text
+
+      - name: churchVisitEyebrow
+        label: Igreja — texto da localização
+        type: string
+
+      - name: churchVisitTitle
+        label: Igreja — título da localização
+        type: string
+
+      - name: churchAddressTitle
+        label: Igreja — título do endereço
+        type: string
+
+      - name: churchServiceTitle
+        label: Igreja — título da celebração
+        type: string
+
+      - name: churchServiceNotice
+        label: Igreja — aviso da programação
+        type: text
+
+      - name: churchCellTitle
+        label: Igreja — título da célula
+        type: string
+
+      - name: churchCellDescription
+        label: Igreja — descrição da célula
+        type: text
+
+      - name: churchCellNotice
+        label: Igreja — aviso da célula
+        type: text
+
+      - name: churchCommunityTitle
+        label: Igreja — título da comunhão
+        type: string
+
+      - name: churchCommunityDescription
+        label: Igreja — descrição da comunhão
+        type: text
+
+      - name: churchMapButton
+        label: Igreja — botão do mapa
+        type: string
+
+      - name: churchInvitationEyebrow
+        label: Igreja — texto do convite
+        type: string
+
+      - name: churchInvitationTitle
+        label: Igreja — título do convite
+        type: string
+
+      - name: churchInvitationParagraph1
+        label: Igreja — convite, primeiro parágrafo
+        type: text
+
+      - name: churchInvitationParagraph2
+        label: Igreja — convite, segundo parágrafo
+        type: text
+
+      - name: churchNotice
+        label: Igreja — aviso informativo
+        type: text
+
+      # RODAPÉ
+
+      - name: footerExploreTitle
+        label: Rodapé — título explorar
+        type: string
+
+      - name: footerCommunityTitle
+        label: Rodapé — título comunhão
+        type: string
+
+      - name: footerProjectTitle
+        label: Rodapé — título projeto
+        type: string
+
+      - name: footerDescription
+        label: Rodapé — descrição
+        type: text
+
+      - name: footerCommunityDescription
+        label: Rodapé — descrição da comunhão
+        type: text
+        
       - name: churchName
         label: Nome da igreja
         type: string
