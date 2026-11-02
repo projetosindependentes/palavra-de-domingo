@@ -81,6 +81,92 @@ content:
           extensions: [jpg, jpeg, png, webp]
           rename: safe
 
+  
+  - name: events
+    label: Eventos
+    type: file
+    path: content/events.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Identificador do evento
+        type: string
+        required: true
+        description: "Use letras minúsculas e hífens. Exemplo: congresso-next-level"
+
+      - name: title
+        label: Título do evento
+        type: string
+        required: true
+
+      - name: description
+        label: Resumo do evento
+        type: text
+
+      - name: date
+        label: Data
+        type: date
+        required: true
+
+      - name: time
+        label: Horário
+        type: string
+
+      - name: location
+        label: Local
+        type: string
+
+      - name: image
+        label: Imagem de capa
+        type: image
+        options:
+          media: images
+          extensions: [jpg, jpeg, png, webp]
+
+      - name: body
+        label: Descrição completa
+        type: rich-text
+        options:
+          format: html
+          media: images
+          path: eventos
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+
+      - name: gallery
+        label: Galeria de imagens
+        type: image
+        list: true
+        options:
+          media: images
+          extensions: [jpg, jpeg, png, webp]
+
+      - name: registrationUrl
+        label: Link de inscrição
+        type: string
+
+      - name: instagramUrl
+        label: Link da publicação no Instagram
+        type: string
+
+      - name: status
+        label: Status do evento
+        type: select
+        required: true
+        options:
+          values:
+            - label: Rascunho
+              value: rascunho
+            - label: Publicado
+              value: publicado
+            - label: Cancelado
+              value: cancelado
+
+      - name: featured
+        label: Destacar na página inicial
+        type: boolean
+
   - name: site
     label: Configurações do site
     type: file
