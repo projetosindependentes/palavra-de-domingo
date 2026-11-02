@@ -267,6 +267,8 @@ navigation?.querySelectorAll("a").forEach(link => {
     }
   });
 
+    console.log("LOGO CONFIGURADA:", config.brandLogo);
+    
     // Logo do cabeçalho
   if (
     typeof config.brandLogo === "string" &&
