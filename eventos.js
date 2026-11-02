@@ -330,7 +330,7 @@ function createEventCard(event, isPast = false) {
       `;
 
       pastContainer.innerHTML = `
-        <p class="notice">
+        <p class="notice" role="alert">
           Não foi possível carregar o histórico de eventos.
         </p>
       `;
