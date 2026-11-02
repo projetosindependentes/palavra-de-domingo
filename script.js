@@ -392,65 +392,194 @@ const homeHero = isHomePage ? document.querySelector(".hero") : null;
     }
     // Imagem da igreja configurada pelo CMS
     const churchImage = document.querySelector("#church-image");
-    const churchImageWrap = document.querySelector("#church-image-wrap");
+function applySiteConfig(config) {
+  siteConfig = config;
 
-    if (churchImage && churchImageWrap && config.churchImage) {
-      const imagePath = String(config.churchImage).replace(/^\/+/, "");
+  document.title = document.title.replace(
+    "Palavra de Domingo",
+    config.siteName || "Palavra de Domingo"
+  );
 
-      churchImage.src = siteUrl(imagePath);
+  // Nome e identidade do site
+  document.querySelectorAll(".brand-name").forEach(brand => {
+    const subtitle = brand.querySelector("small");
 
-if (!churchImage.hasAttribute("alt")) {
-  churchImage.alt = "Imagem da IEQ Resgate";
-}
+    const nameNode = [...brand.childNodes].find(
+      node => node.nodeType === Node.TEXT_NODE
+    );
 
-churchImageWrap.hidden = false;
-     }
-    // Informações da página da igreja
-    const churchHeading = [...document.querySelectorAll("h2")]
-      .find(element => element.textContent.trim() === "IEQ Resgate");
-
-    if (churchHeading && config.churchName) {
-      churchHeading.textContent = config.churchName;
+    if (nameNode) {
+      nameNode.nodeValue = config.siteName || "Palavra de Domingo";
+    } else {
+      brand.insertBefore(
+        document.createTextNode(config.siteName || "Palavra de Domingo"),
+        brand.firstChild
+      );
     }
 
-    const address = [...document.querySelectorAll(".info-item p")]
-      .find(element => element.textContent.includes("Passagem Iracema"));
+    if (subtitle && config.tagline) {
+      subtitle.textContent = config.tagline;
+    }
+  });
 
-    if (address && config.churchAddress) {
-      address.textContent = config.churchAddress;
+  // Campos editáveis pelo Pages CMS
+  document.querySelectorAll("[data-site-field]").forEach(element => {
+    const key = element.dataset.siteField;
+    const value = config[key];
+
+    if (value === undefined || value === null) return;
+
+    element.textContent = String(value);
+  });
+
+  // Links editáveis pelo Pages CMS
+  document.querySelectorAll("[data-site-href]").forEach(element => {
+    const key = element.dataset.siteHref;
+    const value = config[key];
+
+    if (typeof value !== "string" || !value.trim()) return;
+
+    try {
+      const url = new URL(value, window.location.href);
+
+      if (["http:", "https:"].includes(url.protocol)) {
+        element.href = url.href;
+      }
+    } catch {
+      console.warn("Link inválido no CMS:", key);
+    }
+  });
+
+  // Imagem de capa da página inicial
+  const pageName = window.location.pathname.split("/").pop();
+  const isHomePage = pageName === "" || pageName === "index.html";
+  const homeHero = isHomePage
+    ? document.querySelector(".hero")
+    : null;
+
+  if (homeHero && config.homeImage) {
+    const imagePath = String(config.homeImage).replace(/^\/+/, "");
+
+    homeHero.classList.add("has-background-image");
+
+    homeHero.style.backgroundImage =
+      `linear-gradient(rgba(16, 43, 73, 0.78), rgba(16, 43, 73, 0.65)), url("${siteUrl(imagePath)}")`;
+  }
+
+  // Seção de mensagens em destaque
+  const featuredCard = document.querySelector(".featured-card");
+  const featuredSection = featuredCard?.closest(".section");
+
+  if (featuredSection) {
+    const title = featuredSection.querySelector(".section-head h2");
+    const description = featuredSection.querySelector(".section-head p");
+
+    if (title && config.featuredTitle) {
+      title.textContent = config.featuredTitle;
     }
 
-    const mapLink = [...document.querySelectorAll("a")]
-      .find(element => element.textContent.includes("Abrir localização"));
-
-    if (mapLink && config.churchMapUrl) {
-      mapLink.href = config.churchMapUrl;
-    }
-
-    const service = [...document.querySelectorAll(".info-item p")]
-      .find(element => element.textContent.includes("Domingo, às 18h30"));
-
-    if (service && config.youthService) {
-      service.textContent = config.youthService;
-    }
-
-    // Cores personalizadas
-    const validColor = value =>
-      typeof value === "string" &&
-      /^#[0-9a-fA-F]{6}$/.test(value);
-
-    if (validColor(config.primaryColor)) {
-      root.style.setProperty("--brand-primary", config.primaryColor);
-    }
-
-    if (validColor(config.secondaryColor)) {
-      root.style.setProperty("--brand-secondary", config.secondaryColor);
-    }
-
-    if (validColor(config.accentColor)) {
-      root.style.setProperty("--brand-accent", config.accentColor);
+    if (description && config.featuredDescription) {
+      description.textContent = config.featuredDescription;
     }
   }
+
+  // Rodapés
+  document.querySelectorAll(".site-footer").forEach(footer => {
+    const heading = footer.querySelector(".footer-grid h3");
+
+    if (heading && config.siteName) {
+      heading.textContent = config.siteName;
+    }
+
+    const notice = footer.querySelector(".footer-bottom");
+
+    if (notice && config.projectNotice) {
+      notice.textContent =
+        `© ${new Date().getFullYear()} ${config.siteName}. ${config.projectNotice}`;
+    }
+  });
+
+  // Redes sociais
+  document.querySelectorAll(".site-footer").forEach(footer => {
+    const oldSocial = footer.querySelector(".footer-social");
+
+    if (oldSocial) oldSocial.remove();
+
+    const socialLinks = [
+      { name: "Instagram", url: config.instagramUrl },
+      { name: "Facebook", url: config.facebookUrl },
+      { name: "YouTube", url: config.youtubeUrl },
+      { name: "WhatsApp", url: config.whatsappUrl }
+    ];
+
+    const validLinks = socialLinks.filter(item => {
+      if (!item.url) return false;
+
+      try {
+        const url = new URL(item.url);
+        return ["https:", "http:"].includes(url.protocol);
+      } catch {
+        return false;
+      }
+    });
+
+    if (validLinks.length > 0) {
+      const section = document.createElement("div");
+      section.className = "footer-social";
+
+      const heading = document.createElement("h3");
+      heading.textContent = "Redes sociais";
+
+      section.appendChild(heading);
+
+      validLinks.forEach(item => {
+        const link = document.createElement("a");
+
+        link.href = item.url;
+        link.textContent = item.name;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+
+        section.appendChild(link);
+      });
+
+      footer.querySelector(".footer-grid")?.appendChild(section);
+    }
+  });
+
+  // Imagem da igreja
+  const churchImage = document.querySelector("#church-image");
+  const churchImageWrap = document.querySelector("#church-image-wrap");
+
+  if (churchImage && churchImageWrap && config.churchImage) {
+    const imagePath = String(config.churchImage).replace(/^\/+/, "");
+
+    churchImage.src = siteUrl(imagePath);
+
+    if (!churchImage.hasAttribute("alt")) {
+      churchImage.alt = "Imagem da IEQ Resgate";
+    }
+
+    churchImageWrap.hidden = false;
+  }
+
+  // Cores personalizadas
+  const validColor = value =>
+    typeof value === "string" &&
+    /^#[0-9a-fA-F]{6}$/.test(value);
+
+  if (validColor(config.primaryColor)) {
+    root.style.setProperty("--brand-primary", config.primaryColor);
+  }
+
+  if (validColor(config.secondaryColor)) {
+    root.style.setProperty("--brand-secondary", config.secondaryColor);
+  }
+
+  if (validColor(config.accentColor)) {
+    root.style.setProperty("--brand-accent", config.accentColor);
+            }
+}
 
   // ==================================================
   // CARTÕES DAS MENSAGENS
