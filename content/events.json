@@ -7,7 +7,7 @@
     "time": "19h",
     "location": "IEQ RESGATE",
     "body": "<p>Este é um teste do editor de conteúdo dos eventos. Aqui poderemos apresentar detalhes, informações e imagens de cada encontro.</p>",
-    "status": "publicado",
+    "status": "rascunho",
     "featured": false
   },
   {
@@ -25,7 +25,7 @@
     ],
     "registrationUrl": "https://example.com/inscricao",
     "instagramUrl": "https://www.instagram.com/",
-    "status": "publicado",
+    "status": "rascunho",
     "featured": false
   }
 ]
