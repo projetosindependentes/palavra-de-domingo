@@ -1,2 +1,13 @@
-
-[]
+[
+  {
+    "slug": "evento-teste",
+    "title": "Evento de teste",
+    "description": "Testando o cadastro de eventos no portal",
+    "date": "2026-12-15",
+    "time": "19h",
+    "location": "IEQ RESGATE",
+    "body": "<p></p>",
+    "status": "rascunho",
+    "featured": false
+  }
+]
