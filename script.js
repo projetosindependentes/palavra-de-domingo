@@ -93,21 +93,13 @@ function sanitizeMessageHTML(html = "") {
 
   return template.innerHTML;
 }
-  function messageUrl(message) {
-    const existingPages = {
-      permanecer: "mensagens/permanecer.html",
-      fe: "mensagens/fe.html",
-      proposito: "mensagens/proposito.html"
-    };
-
-    if (existingPages[message.slug]) {
-      return siteUrl(existingPages[message.slug]);
-    }
-
-    return siteUrl(
-      `mensagem.html?slug=${encodeURIComponent(message.slug)}`
-    );
-  }
+  
+  // Todas as mensagens usam o mesmo modelo dinâmico.
+function messageUrl(message) {
+  return siteUrl(
+    `mensagem.html?slug=${encodeURIComponent(message.slug)}`
+  );
+}
 
   async function loadJSON(path) {
     const response = await fetch(siteUrl(path), {
@@ -425,10 +417,10 @@ churchImageWrap.hidden = false;
   // CARTÕES DAS MENSAGENS
   // ==================================================
 
-    // Verifica se uma mensagem está liberada para publicação
-  function isPublished(message) {
-  return message.status === "publicado";
-  }
+    // Somente mensagens publicadas podem ser acessadas publicamente.
+function isPublished(message) {
+  return Boolean(message && message.status === "publicado" && message.slug);
+}
   
   function createMessageCard(message) {
     const category = categoryNames[message.category] || "Reflexão";
@@ -440,8 +432,11 @@ churchImageWrap.hidden = false;
 
         <span class="tag">${escapeHTML(category)}</span>
 
-        <h3>${escapeHTML(message.title)}</h3>
+${message.demonstration === true
+  ? '<span class="message-demo-label">Conteúdo demonstrativo</span>'
+  : ""}
 
+<h3>${escapeHTML(message.title)}</h3>
         <p>${escapeHTML(message.excerpt)}</p>
 
         <div class="card-meta">
