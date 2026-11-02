@@ -1,25 +1,106 @@
 {
   "siteName": "Palavra de Domingo",
   "tagline": "Uma palavra para continuar",
+
   "homeEyebrow": "Fé que acompanha a caminhada",
   "homeTitle": "A mensagem termina. A caminhada continua.",
   "homeDescription": "Um espaço para revisitar ensinamentos, aprofundar a Palavra e levar para a vida aquilo que Deus nos ensina.",
   "featuredTitle": "Uma mensagem para transformar a semana",
   "featuredDescription": "Leia, reflita e coloque em prática o que aprendeu.",
+
+  "homeLibraryEyebrow": "Biblioteca",
+  "homeLibraryTitle": "Continue explorando",
+  "homeLibraryDescription": "Outras reflexões para acompanhar sua caminhada.",
+  "homeLibraryLink": "Ver todas →",
+
+  "homeCommunityEyebrow": "Muito além de uma página",
+  "homeCommunityTitle": "A fé também é vivida em comunidade.",
+  "homeCommunityDescription": "Este projeto é um espaço independente de consulta e reflexão. Nenhum resumo substitui a comunhão, a participação nos cultos, o discipulado e a convivência com a igreja.",
+  "homeCommunityButton": "Conheça a IEQ Resgate →",
+
   "aboutTitle": "Uma palavra para continuar.",
   "aboutDescription": "O Palavra de Domingo nasceu da ideia de que aquilo que aprendemos durante um culto pode continuar produzindo frutos ao longo da semana.",
   "aboutProposal": "Este projeto independente busca organizar reflexões, referências bíblicas e aprendizados relacionados às mensagens de domingo. A proposta é oferecer um espaço de consulta que facilite a continuidade do estudo e da reflexão pessoal.",
+
+  "aboutHeroEyebrow": "Conheça o projeto",
+  "aboutProposalEyebrow": "Nossa proposta",
+  "aboutProposalTitle": "Mais do que recordar, aprofundar.",
+  "aboutProposalParagraph2": "Acreditamos que uma mensagem não precisa ficar restrita ao momento em que foi compartilhada. Podemos revisitar seus ensinamentos, examinar as Escrituras e pensar em como colocá-los em prática.",
+
+  "aboutPrinciplesEyebrow": "O que nos orienta",
+  "aboutPrinciplesTitle": "Princípios do projeto",
+
+  "aboutPrinciple1Title": "📖 Centralidade bíblica",
+  "aboutPrinciple1Text": "Valorizar as Escrituras e incentivar a leitura dos textos bíblicos em seu contexto.",
+  "aboutPrinciple2Title": "🤝 Comunhão",
+  "aboutPrinciple2Text": "Reconhecer que a fé também é vivida em comunidade, por meio da convivência e do discipulado.",
+  "aboutPrinciple3Title": "🌱 Crescimento",
+  "aboutPrinciple3Text": "Estimular a reflexão, o aprendizado contínuo e a aplicação prática dos ensinamentos.",
+  "aboutPrinciple4Title": "🔎 Responsabilidade",
+  "aboutPrinciple4Text": "Tratar as mensagens com cuidado, conferindo informações e respeitando as pessoas envolvidas.",
+
+  "aboutTransparencyEyebrow": "Transparência",
+  "aboutTransparencyTitle": "Um projeto independente.",
+  "aboutTransparencyParagraph1": "O Palavra de Domingo é uma iniciativa pessoal e independente. Não é um canal oficial da Igreja do Evangelho Quadrangular, não representa sua liderança e não fala institucionalmente em nome da igreja.",
+  "aboutTransparencyParagraph2": "A publicação de conteúdos relacionados a mensagens reais depende de conferência e das autorizações necessárias. Eventuais materiais demonstrativos são identificados como tais.",
+
+  "aboutInvitationEyebrow": "Um convite",
+  "aboutInvitationTitle": "Que a reflexão continue na vida.",
+  "aboutInvitationDescription": "Use este espaço para revisitar uma mensagem, consultar uma passagem bíblica e registrar suas percepções. Mas não deixe que a experiência digital substitua a leitura pessoal da Bíblia, a comunhão e a participação na igreja local.",
+  "aboutInvitationButton": "Explorar biblioteca →",
+
   "churchName": "IEQ Resgate",
   "churchAddress": "Passagem Iracema, 309",
   "churchNeighborhood": "Marambaia",
   "churchCity": "Belém — Pará",
   "youthService": "Domingo, às 18h30.",
   "churchMapUrl": "https://www.google.com/maps/search/?api=1&query=IEQ+Resgate+Passagem+Iracema+309+Bel%C3%A9m+PA",
+
+  "churchHeroEyebrow": "Comunhão e comunidade",
+  "churchHeroTitle": "A fé também é vivida juntos.",
+  "churchHeroDescription": "A caminhada cristã não se limita ao que aprendemos individualmente. Ela também acontece na comunhão, no serviço e na convivência com outras pessoas.",
+  "churchVisitButton": "Planejar uma visita →",
+  "churchBackButton": "Voltar às mensagens",
+
+  "churchIntroEyebrow": "Uma comunidade local",
+  "churchIntroTitle": "IEQ Resgate",
+  "churchIntroParagraph1": "Esta página apresenta informações de localização e visita da Igreja do Evangelho Quadrangular Resgate, em Belém do Pará.",
+  "churchIntroParagraph2": "Se você deseja conhecer a comunidade, participar de uma celebração ou saber mais sobre suas atividades, procure os canais oficiais da própria igreja para confirmar informações atualizadas.",
+
+  "churchVisitEyebrow": "Como chegar",
+  "churchVisitTitle": "Encontre a igreja",
+  "churchAddressTitle": "📍 Endereço",
+  "churchServiceTitle": "🕊️ Celebração de jovens",
+  "churchServiceNotice": "Confirme a programação antes de se deslocar.",
+  "churchCellTitle": "🤝 Célula",
+  "churchCellDescription": "Encontros durante a semana.",
+  "churchCellNotice": "Consulte a liderança para confirmar horários e locais.",
+  "churchCommunityTitle": "🌱 Comunhão",
+  "churchCommunityDescription": "Um convite para conhecer pessoas, participar e construir relacionamentos.",
+  "churchMapButton": "Abrir localização no Google Maps ↗",
+
+  "churchInvitationEyebrow": "Um convite",
+  "churchInvitationTitle": "Não caminhe sozinho.",
+  "churchInvitationParagraph1": "A leitura de uma mensagem pode despertar perguntas, fortalecer convicções e incentivar mudanças. Mas a vida cristã também envolve estar perto de pessoas, aprender em comunidade e compartilhar a caminhada.",
+  "churchInvitationParagraph2": "Se você deseja conhecer a igreja, procure informações diretamente com seus responsáveis e participe de uma celebração quando puder.",
+  "churchNotice": "Esta é uma página informativa de um projeto independente. Não é um canal oficial da IEQ Resgate. Horários e atividades podem mudar; confirme diretamente com a igreja.",
+
+  "footerExploreTitle": "Explore",
+  "footerCommunityTitle": "Comunhão",
+  "footerProjectTitle": "Projeto",
+  "footerDescription": "Um espaço independente para revisitar ensinamentos, aprofundar a Palavra e levar para a vida aquilo que aprendemos.",
+  "footerCommunityDescription": "Que aquilo que aprendemos hoje continue florescendo durante a semana.",
+
   "primaryColor": "#17395F",
   "secondaryColor": "#2E5F91",
   "accentColor": "#D6B45B",
   "projectNotice": "Projeto independente, sem vínculo institucional oficial.",
+
   "homeImage": "/media/1000387200.jpg",
   "churchImage": "/media/1000183444.jpg",
-  "instagramUrl": "https://www.instagram.com/ieq.resgate?psln=MTBiOTg3enhpeWpkaA=="
+
+  "instagramUrl": "https://www.instagram.com/ieq.resgate?psln=MTBiOTg3enhpeWpkaA==",
+  "facebookUrl": "https://www.facebook.com/share/19Wydx6NeG/",
+  "youtubeUrl": "",
+  "whatsappUrl": ""
 }
