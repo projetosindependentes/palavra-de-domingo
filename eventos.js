@@ -123,87 +123,106 @@
   // CRIAÇÃO DOS CARTÕES
   // ==========================================
 
-  function createEventCard(event, isPast = false) {
+  
+function createEventCard(event, isPast = false) {
 
-    const imageUrl = getEventImage(event.image);
+  const imageUrl = getEventImage(event.image);
 
-    const image = imageUrl
+  const image = imageUrl
+    ? `
+      <img
+        class="event-card-image"
+        src="${escapeHTML(imageUrl)}"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      >
+    `
+    : "";
+
+  const registrationUrl = getRegistrationUrl(
+    event.registrationUrl
+  );
+
+  const registrationButton = registrationUrl && !isPast
+    ? `
+      <a
+        class="btn btn-primary event-registration"
+        href="${escapeHTML(registrationUrl)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Inscreva-se ↗
+      </a>
+    `
+    : "";
+
+  // Cria o endereço da página individual.
+  // O slug precisa seguir o padrão letras minúsculas e hífens.
+  const validSlug =
+    typeof event.slug === "string" &&
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(event.slug);
+
+  const detailsButton = validSlug
+    ? `
+      <a
+        class="btn btn-secondary event-details"
+        href="evento.html?slug=${encodeURIComponent(event.slug)}"
+      >
+        Ver detalhes →
+      </a>
+    `
+    : "";
+
+  const metadata = [
+    `
+      <span>
+        📅 ${escapeHTML(formatDate(event.date))}
+      </span>
+    `,
+
+    event.time
       ? `
-        <img
-          class="event-card-image"
-          src="${escapeHTML(imageUrl)}"
-          alt=""
-          loading="lazy"
-          decoding="async"
-        >
-      `
-      : "";
-
-    const registrationUrl = getRegistrationUrl(
-      event.registrationUrl
-    );
-
-    const registrationButton = registrationUrl && !isPast
-      ? `
-        <a
-          class="btn btn-primary event-registration"
-          href="${escapeHTML(registrationUrl)}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Inscreva-se ↗
-        </a>
-      `
-      : "";
-
-    const metadata = [
-      `
         <span>
-          📅 ${escapeHTML(formatDate(event.date))}
+          🕒 ${escapeHTML(event.time)}
         </span>
-      `,
+      `
+      : "",
 
-      event.time
-        ? `
-          <span>
-            🕒 ${escapeHTML(event.time)}
-          </span>
-        `
-        : "",
-
-      event.location
-        ? `
-          <span>
-            📍 ${escapeHTML(event.location)}
-          </span>
-        `
-        : ""
-
-    ].filter(Boolean).join("");
-
-    return `
-      <article class="message-card event-card">
-
-        ${image}
-
-        <span class="tag">
-          ${isPast ? "Evento realizado" : "Próximo evento"}
+    event.location
+      ? `
+        <span>
+          📍 ${escapeHTML(event.location)}
         </span>
+      `
+      : ""
 
-        <h3>${escapeHTML(event.title)}</h3>
+  ].filter(Boolean).join("");
 
-        <p>${escapeHTML(event.description || "")}</p>
+  return `
+    <article class="message-card event-card">
 
-        <div class="event-meta">
-          ${metadata}
-        </div>
+      ${image}
 
-        ${registrationButton}
+      <span class="tag">
+        ${isPast ? "Evento realizado" : "Próximo evento"}
+      </span>
 
-      </article>
-    `;
-  }
+      <h3>${escapeHTML(event.title)}</h3>
 
+      <p>${escapeHTML(event.description || "")}</p>
+
+      <div class="event-meta">
+        ${metadata}
+      </div>
+
+      ${detailsButton}
+
+      ${registrationButton}
+
+    </article>
+  `;
+}
 
   // ==========================================
   // CARREGAMENTO DOS EVENTOS
