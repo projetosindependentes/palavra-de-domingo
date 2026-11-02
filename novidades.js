@@ -243,7 +243,7 @@
       console.error("Erro ao carregar novidades:", error);
 
       newsContainer.innerHTML = `
-        <p class="notice">
+        <p class="notice" role="alert">
           Não foi possível carregar as novidades.
           Tente novamente mais tarde.
         </p>
