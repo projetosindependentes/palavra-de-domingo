@@ -238,161 +238,6 @@ navigation?.querySelectorAll("a").forEach(link => {
   // ==================================================
 
   function applySiteConfig(config) {
-    siteConfig = config;
-
-    document.title = document.title.replace(
-      "Palavra de Domingo",
-      config.siteName || "Palavra de Domingo"
-    );
-
-    document.querySelectorAll(".brand-name").forEach(brand => {
-      const subtitle = brand.querySelector("small");
-
-      brand.firstChild.nodeValue =
-        config.siteName || "Palavra de Domingo";
-
-      if (subtitle && config.tagline) {
-        subtitle.textContent = config.tagline;
-      }
-    });
-
-    // Página inicial
-    const pageName = window.location.pathname.split("/").pop();
-const isHomePage = pageName === "" || pageName === "index.html";
-const homeHero = isHomePage ? document.querySelector(".hero") : null;
-    if (homeHero) {
-      const eyebrow = homeHero.querySelector(".eyebrow");
-      const title = homeHero.querySelector("h1");
-      const description = homeHero.querySelector("p");
-
-      if (eyebrow && config.homeEyebrow) {
-        eyebrow.textContent = config.homeEyebrow;
-      }
-
-      if (title && config.homeTitle) {
-        title.textContent = config.homeTitle;
-      }
-
-      if (description && config.homeDescription) {
-        description.textContent = config.homeDescription;
-      }
-    }
-    
-    // Título e descrição da seção em destaque
-    const featuredCard = document.querySelector(".featured-card");
-    const featuredSection = featuredCard?.closest(".section");
-
-    if (featuredSection) {
-      const sectionTitle = featuredSection.querySelector(".section-head h2");
-      const sectionDescription = featuredSection.querySelector(".section-head p");
-
-      if (sectionTitle && config.featuredTitle) {
-        sectionTitle.textContent = config.featuredTitle;
-      }
-
-      if (sectionDescription && config.featuredDescription) {
-        sectionDescription.textContent = config.featuredDescription;
-      }
-        }
-    
-        // Imagem de capa configurada pelo CMS
-    if (homeHero && config.homeImage) {
-      const imagePath = String(config.homeImage).replace(/^\/+/, "");
-
-      homeHero.classList.add("has-background-image");
-
-      homeHero.style.backgroundImage =
-        `linear-gradient(rgba(16, 43, 73, 0.78), rgba(16, 43, 73, 0.65)), url("${siteUrl(imagePath)}")`;
-    }
-    
-    // Rodapés
-    document.querySelectorAll(".site-footer").forEach(footer => {
-      const heading = footer.querySelector(".footer-grid h3");
-
-      if (heading && config.siteName) {
-        heading.textContent = config.siteName;
-      }
-
-      const notice = footer.querySelector(".footer-bottom");
-
-      if (notice && config.projectNotice) {
-        notice.textContent =
-          `© ${new Date().getFullYear()} ${config.siteName}. ${config.projectNotice}`;
-      }
-    });
-    // Redes sociais configuradas pelo CMS
-    document.querySelectorAll(".site-footer").forEach(footer => {
-      const oldSocial = footer.querySelector(".footer-social");
-
-      if (oldSocial) oldSocial.remove();
-
-      const socialLinks = [
-        { name: "Instagram", url: config.instagramUrl },
-        { name: "Facebook", url: config.facebookUrl },
-        { name: "YouTube", url: config.youtubeUrl },
-        { name: "WhatsApp", url: config.whatsappUrl }
-      ];
-
-      const validLinks = socialLinks.filter(item => {
-        if (!item.url) return false;
-
-        try {
-          const url = new URL(item.url);
-          return url.protocol === "https:" || url.protocol === "http:";
-        } catch {
-          return false;
-        }
-      });
-
-      if (validLinks.length > 0) {
-        const section = document.createElement("div");
-        section.className = "footer-social";
-
-        const heading = document.createElement("h3");
-        heading.textContent = "Redes sociais";
-
-        section.appendChild(heading);
-
-        validLinks.forEach(item => {
-          const link = document.createElement("a");
-
-          link.href = item.url;
-          link.textContent = item.name;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-
-          section.appendChild(link);
-        });
-
-        footer.querySelector(".footer-grid")?.appendChild(section);
-      }
-    });
-    // Informações da página Sobre
-    if (document.querySelector(".content-panel")) {
-      const aboutHeading = [...document.querySelectorAll(".content-panel h2")]
-        .find(element => element.textContent.includes("Uma palavra para continuar"));
-
-      if (aboutHeading && config.aboutTitle) {
-        aboutHeading.textContent = config.aboutTitle;
-      }
-
-      const aboutDescription = [...document.querySelectorAll(".content-panel p")]
-        .find(element => element.textContent.includes("O Palavra de Domingo nasceu"));
-
-      if (aboutDescription && config.aboutDescription) {
-        aboutDescription.textContent = config.aboutDescription;
-      }
-
-      const proposal = [...document.querySelectorAll(".content-panel p")]
-        .find(element => element.textContent.includes("Este projeto independente busca"));
-
-      if (proposal && config.aboutProposal) {
-        proposal.textContent = config.aboutProposal;
-      }
-    }
-    // Imagem da igreja configurada pelo CMS
-    const churchImage = document.querySelector("#church-image");
-function applySiteConfig(config) {
   siteConfig = config;
 
   document.title = document.title.replace(
@@ -422,7 +267,7 @@ function applySiteConfig(config) {
     }
   });
 
-  // Campos editáveis pelo Pages CMS
+  // Campos editáveis pelo CMS
   document.querySelectorAll("[data-site-field]").forEach(element => {
     const key = element.dataset.siteField;
     const value = config[key];
@@ -432,7 +277,7 @@ function applySiteConfig(config) {
     element.textContent = String(value);
   });
 
-  // Links editáveis pelo Pages CMS
+  // Links editáveis pelo CMS
   document.querySelectorAll("[data-site-href]").forEach(element => {
     const key = element.dataset.siteHref;
     const value = config[key];
@@ -578,8 +423,8 @@ function applySiteConfig(config) {
 
   if (validColor(config.accentColor)) {
     root.style.setProperty("--brand-accent", config.accentColor);
-            }
-}
+  }
+      }
 
   // ==================================================
   // CARTÕES DAS MENSAGENS
