@@ -785,6 +785,11 @@ h1 {
   margin-bottom: 24px;
 }
 
+.event-details {
+  align-self: flex-start;
+  margin-top: 16px;
+}
+
 .event-card > .event-registration:last-child {
   margin-bottom: 24px;
 }
@@ -799,11 +804,8 @@ h1 {
   .event-card > h3,
   .event-card > p,
   .event-card > .event-meta,
+  .event-card > .event-details,
   .event-card > .event-registration {
-  .event-details {
-  align-self: flex-start;
-  margin-top: 16px;
-    }
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -816,4 +818,3 @@ h1 {
     margin-bottom: 20px;
   }
 }
-
