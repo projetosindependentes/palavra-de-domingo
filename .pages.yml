@@ -73,6 +73,7 @@ content:
 
       - name: body
         label: Conteúdo completo
+        description: "Organize o texto em parágrafos. Use Título 2 para as seções principais e Título 3 para subdivisões. Não use Título 1, pois a página já possui um título principal. Prefira listas para sequências e citações para trechos destacados."
         type: rich-text
         options:
           format: html
@@ -131,6 +132,7 @@ content:
     
       - name: body
         label: Descrição completa
+        description: "Organize a descrição em parágrafos. Use Título 2 para seções principais e Título 3 para subdivisões. Não use Título 1. Prefira listas para programações e informações em sequência."
         type: rich-text
         options:
           format: html
@@ -232,6 +234,7 @@ content:
   
       - name: body
         label: Conteúdo completo
+        description: "Organize o texto em parágrafos. Use Título 2 para seções principais e Título 3 para subdivisões. Não use Título 1. Utilize links com textos descritivos, evitando expressões vagas como 'clique aqui'."
         type: rich-text
         options:
           format: html
