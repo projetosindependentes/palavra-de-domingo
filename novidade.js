@@ -305,7 +305,9 @@
     }
 
     image.src = imageUrl;
-    image.alt = `Capa da publicação ${news.title}`;
+    image.alt = typeof news.imageAlt === "string"
+  ? news.imageAlt.trim()
+  : `Capa da publicação ${news.title}`;
     image.loading = "eager";
     image.decoding = "async";
 
