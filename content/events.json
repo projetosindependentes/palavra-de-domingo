@@ -17,7 +17,12 @@
     "date": "2026-12-15",
     "time": "19h",
     "location": "IEQ Resgate - BELÉM",
+    "image": "/media/1000388912.jpg",
     "body": "<p>Testando a página individual de eventos.</p>",
+    "gallery": [
+      "/media/1000385775.jpg",
+      "/media/1000385725.jpg"
+    ],
     "registrationUrl": "https://example.com/inscricao",
     "instagramUrl": "https://www.instagram.com/",
     "status": "publicado",
