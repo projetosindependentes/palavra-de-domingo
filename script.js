@@ -267,6 +267,24 @@ navigation?.querySelectorAll("a").forEach(link => {
     }
   });
 
+    // Logo do cabeçalho
+  if (
+    typeof config.brandLogo === "string" &&
+    config.brandLogo.startsWith("/media/")
+  ) {
+    const imagePath = config.brandLogo.replace(/^\/+/, "");
+
+    document.querySelectorAll(".brand-mark").forEach(mark => {
+      const logo = document.createElement("img");
+
+      logo.src = siteUrl(imagePath);
+      logo.alt = "Logo da IEQ Resgate";
+      logo.className = "brand-logo-image";
+
+      mark.replaceChildren(logo);
+    });
+  }
+    
   // Campos editáveis pelo CMS
   document.querySelectorAll("[data-site-field]").forEach(element => {
     const key = element.dataset.siteField;
