@@ -849,13 +849,3 @@ renderFeaturedMessage(publishedMessages);
   initializeContent();
 
 })();
-
-/* Imagens dentro das mensagens */
-.article #message-body img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 28px auto;
-  border-radius: 16px;
-  object-fit: contain;
-}
