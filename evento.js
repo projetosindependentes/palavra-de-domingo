@@ -294,7 +294,7 @@
 
     const image = document.querySelector("#event-cover");
 
-    if (!imageUrl || !wrapper || !image) {
+   if (!imageUrl || !wrapper || !image) {
       return;
     }
 
@@ -316,15 +316,14 @@
   // ==========================================
   // GALERIA DE IMAGENS
   // ==========================================
-
+  
   function renderGallery(gallery) {
   
-function renderGallery(gallery) {
-  const section = document.querySelector(
+    const section = document.querySelector(
     "#event-gallery-section"
   );
 
-  const container = document.querySelector(
+    const container = document.querySelector(
     "#event-gallery"
   );
 
