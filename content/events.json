@@ -9,5 +9,18 @@
     "body": "<p>Este é um teste do editor de conteúdo dos eventos. Aqui poderemos apresentar detalhes, informações e imagens de cada encontro.</p>",
     "status": "rascunho",
     "featured": false
+  },
+  {
+    "slug": "teste-cartao",
+    "title": "Evento de demonstração",
+    "description": "Este é um evento temporário para testar o portal.",
+    "date": "2026-12-15",
+    "time": "19h",
+    "location": "IEQ Resgate - BELÉM",
+    "body": "<p>Testando a página individual de eventos.</p>",
+    "registrationUrl": "https://example.com/inscricao",
+    "instagramUrl": "https://www.instagram.com/",
+    "status": "publicado",
+    "featured": false
   }
 ]
