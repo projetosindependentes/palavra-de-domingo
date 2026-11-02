@@ -299,7 +299,9 @@
     }
 
     image.src = imageUrl;
-    image.alt = `Capa do evento ${event.title}`;
+    image.alt = typeof event.imageAlt === "string"
+  ? event.imageAlt.trim()
+  : `Capa do evento ${event.title}`;
     image.loading = "eager";
     image.decoding = "async";
 
