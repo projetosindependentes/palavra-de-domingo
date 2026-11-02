@@ -745,6 +745,7 @@ h1 {
 .event-card > h3,
 .event-card > p,
 .event-card > .event-meta,
+.event-card > .event-details,
 .event-card > .event-registration {
   margin-left: 24px;
   margin-right: 24px;
@@ -799,6 +800,10 @@ h1 {
   .event-card > p,
   .event-card > .event-meta,
   .event-card > .event-registration {
+  .event-details {
+  align-self: flex-start;
+  margin-top: 16px;
+    }
     margin-left: 20px;
     margin-right: 20px;
   }
