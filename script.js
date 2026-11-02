@@ -419,9 +419,11 @@ navigation?.querySelectorAll("a").forEach(link => {
 
     churchImage.src = siteUrl(imagePath);
 
-    if (!churchImage.hasAttribute("alt")) {
-      churchImage.alt = "Imagem da IEQ Resgate";
-    }
+        churchImage.alt =
+      typeof config.churchImageAlt === "string" &&
+      config.churchImageAlt.trim()
+        ? config.churchImageAlt.trim()
+        : "Imagem da comunidade IEQ Resgate";
 
     churchImageWrap.hidden = false;
   }
