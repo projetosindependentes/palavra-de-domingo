@@ -592,6 +592,13 @@ content:
         label: Aviso sobre o projeto
         type: text
 
+      - name: brandLogo
+        label: Logo do cabeçalho
+        type: image
+        options:
+          media: images
+          extensions: [jpg, jpeg, png, webp]
+
       - name: homeImage
         label: Imagem de capa da página inicial
         type: image
