@@ -124,6 +124,11 @@ content:
           media: images
           extensions: [jpg, jpeg, png, webp]
 
+      - name: imageAlt
+        label: Descrição acessível da imagem de capa
+        type: text
+        description: "Descreva o que aparece na imagem para pessoas que utilizam leitores de tela. Deixe vazio se a imagem for decorativa."
+    
       - name: body
         label: Descrição completa
         type: rich-text
@@ -220,6 +225,11 @@ content:
           media: images
           extensions: [jpg, jpeg, png, webp]
 
+      - name: imageAlt
+        label: Descrição acessível da imagem de capa
+        type: text
+        description: "Descreva o que aparece na imagem para pessoas que utilizam leitores de tela. Deixe vazio se a imagem for decorativa."
+  
       - name: body
         label: Conteúdo completo
         type: rich-text
