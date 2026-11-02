@@ -167,6 +167,97 @@ content:
         label: Destacar na página inicial
         type: boolean
 
+
+  - name: news
+    label: Novidades
+    type: file
+    path: content/news.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Identificador da publicação
+        type: string
+        required: true
+        description: "Use letras minúsculas e hífens. Exemplo: campanha-do-agasalho"
+
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: category
+        label: Categoria
+        type: select
+        options:
+          values:
+            - label: Comunicado
+              value: comunicado
+            - label: Atualização
+              value: atualizacao
+            - label: Projeto
+              value: projeto
+            - label: Produto
+              value: produto
+            - label: Aviso
+              value: aviso
+            - label: Geral
+              value: geral
+
+      - name: date
+        label: Data da publicação
+        type: date
+        required: true
+
+      - name: summary
+        label: Resumo
+        type: text
+
+      - name: image
+        label: Imagem de capa
+        type: image
+        options:
+          media: images
+          extensions: [jpg, jpeg, png, webp]
+
+      - name: body
+        label: Conteúdo completo
+        type: rich-text
+        options:
+          format: html
+          media: images
+          path: novidades
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+
+      - name: linkLabel
+        label: Texto do botão externo
+        type: string
+
+      - name: linkUrl
+        label: Link externo
+        type: string
+
+      - name: instagramUrl
+        label: Link da publicação no Instagram
+        type: string
+
+      - name: status
+        label: Status da publicação
+        type: select
+        required: true
+        options:
+          values:
+            - label: Rascunho
+              value: rascunho
+            - label: Publicado
+              value: publicado
+
+      - name: featured
+        label: Destacar na página inicial
+        type: boolean
+        
+
   - name: site
     label: Configurações do site
     type: file
