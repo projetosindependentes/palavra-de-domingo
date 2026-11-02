@@ -20,18 +20,18 @@
     "image": "/media/1000388912.jpg",
     "body": "<p>Testando a página individual de eventos.</p>",
     "gallery": [
-  {
-    "image": "/media/1000385775.jpg",
-    "imageAlt": "Fotografia da galeria do evento de demonstração"
-  },
-  {
-    "image": "/media/1000385725.jpg",
-    "imageAlt": "Segunda fotografia da galeria do evento de demonstração"
-  }
-],
+      {
+        "image": "/media/1000385775.jpg",
+        "imageAlt": "Fotografia da galeria do evento de demonstração"
+      },
+      {
+        "image": "/media/1000385725.jpg",
+        "imageAlt": "Segunda fotografia da galeria do evento de demonstração"
+      }
+    ],
     "registrationUrl": "https://example.com/inscricao",
     "instagramUrl": "https://www.instagram.com/",
-    "status": "rascunho",
+    "status": "publicado",
     "featured": false
   }
 ]
