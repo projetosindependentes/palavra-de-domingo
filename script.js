@@ -424,7 +424,7 @@ navigation?.querySelectorAll("a").forEach(link => {
   if (validColor(config.accentColor)) {
     root.style.setProperty("--brand-accent", config.accentColor);
   }
-      }
+}
 
   // ==================================================
   // CARTÕES DAS MENSAGENS
