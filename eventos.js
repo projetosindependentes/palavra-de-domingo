@@ -323,7 +323,7 @@ function createEventCard(event, isPast = false) {
       console.error("Erro ao carregar eventos:", error);
 
       upcomingContainer.innerHTML = `
-        <p class="notice">
+        <p class="notice" role="alert">
           Não foi possível carregar os próximos eventos.
           Tente novamente mais tarde.
         </p>
