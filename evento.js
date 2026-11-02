@@ -318,39 +318,64 @@
   // ==========================================
 
   function renderGallery(gallery) {
-    const section = document.querySelector(
-      "#event-gallery-section"
-    );
+  
+function renderGallery(gallery) {
+  const section = document.querySelector(
+    "#event-gallery-section"
+  );
 
-    const container = document.querySelector(
-      "#event-gallery"
-    );
+  const container = document.querySelector(
+    "#event-gallery"
+  );
 
-    if (!section || !container) return;
+  if (!section || !container) return;
 
-    if (!Array.isArray(gallery)) {
-      return;
-    }
-
-    const images = gallery
-      .map(getMediaUrl)
-      .filter(Boolean);
-
-    if (images.length === 0) {
-      return;
-    }
-
-    container.innerHTML = images.map((url, index) => `
-      <img
-        src="${escapeHTML(url)}"
-        alt="Imagem ${index + 1} da galeria do evento"
-        loading="lazy"
-        decoding="async"
-      >
-    `).join("");
-
-    section.hidden = false;
+  if (!Array.isArray(gallery)) {
+    return;
   }
+
+  const images = gallery
+    .map((item, index) => {
+      // Compatibilidade com o formato antigo:
+      // gallery: ["/media/foto.jpg"]
+      if (typeof item === "string") {
+        return {
+          url: getMediaUrl(item),
+          alt: `Imagem ${index + 1} da galeria do evento`
+        };
+      }
+
+      // Novo formato:
+      // { image: "/media/foto.jpg", imageAlt: "Descrição" }
+      if (item && typeof item === "object") {
+        return {
+          url: getMediaUrl(item.image),
+          alt: typeof item.imageAlt === "string"
+            ? item.imageAlt.trim()
+            : ""
+        };
+      }
+
+      return null;
+    })
+    .filter(item => item && item.url);
+
+  if (images.length === 0) {
+    return;
+  }
+
+  container.innerHTML = images.map(item => `
+    <img
+      src="${escapeHTML(item.url)}"
+      alt="${escapeHTML(item.alt)}"
+      loading="lazy"
+      decoding="async"
+    >
+  `).join("");
+
+  section.hidden = false;
+}
+
 
 
   // ==========================================
