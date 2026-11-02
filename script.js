@@ -268,6 +268,26 @@ navigation?.querySelectorAll("a").forEach(link => {
   });
 
     console.log("LOGO CONFIGURADA:", config.brandLogo);
+
+    const logoDebug = document.createElement("div");
+
+logoDebug.style.cssText = `
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 99999;
+  background: #17395F;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+`;
+
+logoDebug.textContent =
+  `Logo: ${String(config.brandLogo)}
+  | Elementos encontrados: ${document.querySelectorAll(".brand-mark").length}`;
+
+document.body.appendChild(logoDebug);
     
     // Logo do cabeçalho
   if (
