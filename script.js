@@ -475,8 +475,11 @@ ${message.demonstration === true
 );
 
       const otherMessages = publishedMessages
-        .filter(message => !featured || message.slug !== featured.slug)
-        .slice(0, 3);
+  .filter(message =>
+    message.demonstration !== true &&
+    (!featured || message.slug !== featured.slug)
+  )
+  .slice(0, 3);
 
       homeGrid.innerHTML = otherMessages
   .map(createMessageCard)
