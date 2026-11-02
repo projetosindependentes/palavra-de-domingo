@@ -35,6 +35,7 @@
   })[char]);
 }
 
+
 function sanitizeMessageHTML(html = "") {
   const template = document.createElement("template");
   template.innerHTML = String(html);
@@ -42,7 +43,7 @@ function sanitizeMessageHTML(html = "") {
   const allowedTags = new Set([
     "P", "H2", "H3", "UL", "OL", "LI",
     "BLOCKQUOTE", "STRONG", "B", "EM", "I",
-    "A", "BR", "HR"
+    "A", "IMG", "BR", "HR"
   ]);
 
   function cleanNode(node) {
@@ -58,6 +59,43 @@ function sanitizeMessageHTML(html = "") {
 
       if (!allowedTags.has(child.tagName)) {
         child.replaceWith(...child.childNodes);
+        return;
+      }
+
+      if (child.tagName === "IMG") {
+        const src = child.getAttribute("src");
+
+        try {
+          const url = new URL(src, window.location.origin);
+
+          if (
+            url.origin !== window.location.origin ||
+            !url.pathname.startsWith("/media/")
+          ) {
+            child.remove();
+            return;
+          }
+
+          child.setAttribute("src", url.pathname);
+          child.setAttribute("loading", "lazy");
+          child.setAttribute("decoding", "async");
+
+        } catch {
+          child.remove();
+          return;
+        }
+
+        [...child.attributes].forEach(attribute => {
+          if (!["src", "alt", "title", "loading", "decoding"]
+            .includes(attribute.name.toLowerCase())) {
+            child.removeAttribute(attribute.name);
+          }
+        });
+
+        if (!child.hasAttribute("alt")) {
+          child.setAttribute("alt", "");
+        }
+
         return;
       }
 
@@ -93,6 +131,7 @@ function sanitizeMessageHTML(html = "") {
 
   return template.innerHTML;
 }
+
   
   // Todas as mensagens usam o mesmo modelo dinâmico.
 function messageUrl(message) {
@@ -810,3 +849,13 @@ renderFeaturedMessage(publishedMessages);
   initializeContent();
 
 })();
+
+/* Imagens dentro das mensagens */
+.article #message-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 28px auto;
+  border-radius: 16px;
+  object-fit: contain;
+}
