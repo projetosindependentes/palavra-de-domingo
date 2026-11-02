@@ -716,6 +716,8 @@ renderFeaturedMessage(publishedMessages);
         filterMessages();
       });
     });
+
+          filterMessages();
   }
 
 
