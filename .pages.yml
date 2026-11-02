@@ -637,6 +637,11 @@ content:
           extensions: [jpg, jpeg, png, webp]
           rename: true
 
+      - name: churchImageAlt
+        label: Descrição acessível da foto da igreja
+        type: text
+        description: "Descreva objetivamente o que aparece na fotografia. Deixe vazio se ela for puramente decorativa."
+        
       - name: instagramUrl
         label: Instagram
         type: string
