@@ -146,14 +146,14 @@ content:
         type: object
         list: true
         fields:
-      - name: image
+          - name: image
             label: Fotografia
             type: image
             options:
               media: images
               extensions: [jpg, jpeg, png, webp]
 
-      - name: imageAlt
+          - name: imageAlt
             label: Descrição acessível da fotografia
             type: text
             description: "Descreva o que aparece na foto. Se ela for puramente decorativa, deixe vazio."
