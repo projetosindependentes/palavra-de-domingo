@@ -882,3 +882,28 @@ h1 {
   }
 
 }
+
+/* LOGO DO CABEÇALHO */
+.brand-mark {
+  background: #FFFFFF;
+  overflow: hidden;
+  flex: 0 0 42px;
+  border-radius: 12px;
+}
+
+.brand-logo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #FFFFFF;
+  border-radius: inherit;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 540px) {
+  .brand-mark {
+    flex-basis: 38px;
+  }
+}
