@@ -710,3 +710,13 @@ h1 {
   font-size: 0.95rem;
   line-height: 1.5;
 }
+
+/* Imagens dentro das mensagens */
+.article #message-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 28px auto;
+  border-radius: 16px;
+  object-fit: contain;
+}
