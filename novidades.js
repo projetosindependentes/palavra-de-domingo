@@ -121,7 +121,7 @@
         <img
           class="event-card-image"
           src="${escapeHTML(imageUrl)}"
-          alt=""
+          alt="${escapeHTML(typeof news.imageAlt === "string" ? news.imageAlt.trim() : "")}"
           loading="lazy"
           decoding="async"
         >
