@@ -133,7 +133,7 @@ function createEventCard(event, isPast = false) {
       <img
         class="event-card-image"
         src="${escapeHTML(imageUrl)}"
-        alt=""
+        alt="${escapeHTML(typeof event.imageAlt === "string" ? event.imageAlt.trim() : "")}"
         loading="lazy"
         decoding="async"
       >
