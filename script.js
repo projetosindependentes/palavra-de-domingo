@@ -66,17 +66,19 @@ function sanitizeMessageHTML(html = "") {
         const src = child.getAttribute("src");
 
         try {
-          const url = new URL(src, window.location.origin);
+          
+const url = new URL(src, siteRoot);
+const mediaRoot = new URL("media/", siteRoot);
 
-          if (
-            url.origin !== window.location.origin ||
-            !url.pathname.startsWith("/media/")
-          ) {
-            child.remove();
-            return;
-          }
+if (
+  url.origin !== siteRoot.origin ||
+  !url.pathname.startsWith(mediaRoot.pathname)
+) {
+  child.remove();
+  return;
+}
 
-          child.setAttribute("src", url.pathname);
+          child.setAttribute("src", url.href);
           child.setAttribute("loading", "lazy");
           child.setAttribute("decoding", "async");
 
