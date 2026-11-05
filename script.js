@@ -1113,5 +1113,6 @@ renderFeaturedMessage(publishedMessages);
   } // fechamento do catch/função initializeContent
 
   initializeContent();
-
+  loadHomeHighlights();
+  
 })();
