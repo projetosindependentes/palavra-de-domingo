@@ -519,6 +519,10 @@ ${message.demonstration === true
       homeGrid.innerHTML = otherMessages
   .map(createMessageCard)
   .join("");
+            const homeEmpty = document.querySelector("#home-message-empty");
+
+      if (homeEmpty) {
+        homeEmpty.hidden = otherMessages.length > 0;
 }
 
 renderFeaturedMessage(publishedMessages);
