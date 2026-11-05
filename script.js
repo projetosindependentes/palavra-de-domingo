@@ -666,6 +666,269 @@ renderFeaturedMessage(publishedMessages);
     }
   }
 
+  
+  // ==================================================
+  // DESTAQUES DE EVENTOS E NOVIDADES NA HOME
+  // ==================================================
+
+  function isValidHomeDate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value || ""))) {
+      return false;
+    }
+
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    return (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    );
+  }
+
+  function formatHomeDate(value) {
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    return new Intl.DateTimeFormat("pt-BR", {
+      dateStyle: "long"
+    }).format(date);
+  }
+
+  function getHomeImage(value) {
+    if (typeof value !== "string" || !value.trim()) {
+      return "";
+    }
+
+    try {
+      const imageUrl = new URL(
+        value.replace(/^\/+/, ""),
+        siteRoot
+      );
+
+      const mediaPath = new URL("media/", siteRoot).pathname;
+
+      if (
+        imageUrl.origin !== siteRoot.origin ||
+        !imageUrl.pathname.startsWith(mediaPath)
+      ) {
+        return "";
+      }
+
+      return imageUrl.href;
+
+    } catch {
+      return "";
+    }
+  }
+
+  function getHomeExternalUrl(value) {
+    if (typeof value !== "string" || !value.trim()) {
+      return "";
+    }
+
+    try {
+      const url = new URL(value);
+
+      return ["https:", "http:"].includes(url.protocol)
+        ? url.href
+        : "";
+
+    } catch {
+      return "";
+    }
+  }
+
+  function isValidHomeSlug(value) {
+    return (
+      typeof value === "string" &&
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)
+    );
+  }
+
+  function createHomeEventCard(event) {
+    const imageUrl = getHomeImage(event.image);
+
+    const image = imageUrl
+      ? `
+        <img
+          class="event-card-image"
+          src="${escapeHTML(imageUrl)}"
+          alt="${escapeHTML(event.imageAlt || "")}"
+          loading="lazy"
+          decoding="async"
+        >
+      `
+      : "";
+
+    const registrationUrl = getHomeExternalUrl(
+      event.registrationUrl
+    );
+
+    const registrationButton = registrationUrl
+      ? `
+        <a
+          class="btn btn-primary event-registration"
+          href="${escapeHTML(registrationUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Inscreva-se ↗
+        </a>
+      `
+      : "";
+
+    return `
+      <article class="message-card event-card">
+        ${image}
+
+        <span class="tag">Próximo evento</span>
+
+        <h3>${escapeHTML(event.title)}</h3>
+
+        <p>${escapeHTML(event.description || "")}</p>
+
+        <div class="event-meta">
+          <span>📅 ${escapeHTML(formatHomeDate(event.date))}</span>
+          ${event.time ? `<span>🕒 ${escapeHTML(event.time)}</span>` : ""}
+          ${event.location ? `<span>📍 ${escapeHTML(event.location)}</span>` : ""}
+        </div>
+
+        <a
+          class="btn btn-secondary event-details"
+          href="evento.html?slug=${encodeURIComponent(event.slug)}"
+        >
+          Ver detalhes →
+        </a>
+
+        ${registrationButton}
+      </article>
+    `;
+  }
+
+  function createHomeNewsCard(news) {
+    const imageUrl = getHomeImage(news.image);
+
+    const image = imageUrl
+      ? `
+        <img
+          class="event-card-image"
+          src="${escapeHTML(imageUrl)}"
+          alt="${escapeHTML(news.imageAlt || "")}"
+          loading="lazy"
+          decoding="async"
+        >
+      `
+      : "";
+
+    const categories = {
+      comunicado: "Comunicado",
+      atualizacao: "Atualização",
+      projeto: "Projeto",
+      produto: "Produto",
+      aviso: "Aviso",
+      geral: "Geral"
+    };
+
+    const category = categories[news.category] || "Novidade";
+
+    return `
+      <article class="message-card event-card">
+        ${image}
+
+        <span class="tag">${escapeHTML(category)}</span>
+
+        <h3>${escapeHTML(news.title)}</h3>
+
+        <p>${escapeHTML(news.summary || "")}</p>
+
+        <div class="event-meta">
+          <span>📅 ${escapeHTML(formatHomeDate(news.date))}</span>
+        </div>
+
+        <a
+          class="btn btn-secondary event-details"
+          href="novidade.html?slug=${encodeURIComponent(news.slug)}"
+        >
+          Ler publicação →
+        </a>
+      </article>
+    `;
+  }
+
+  async function loadHomeHighlights() {
+    const eventsSection = document.querySelector("#home-events");
+    const eventsContainer = document.querySelector("#home-event-list");
+
+    const newsSection = document.querySelector("#home-news");
+    const newsContainer = document.querySelector("#home-news-list");
+
+    const [eventsResult, newsResult] = await Promise.allSettled([
+      loadJSON("content/events.json"),
+      loadJSON("content/news.json")
+    ]);
+
+    if (eventsResult.status === "fulfilled" && Array.isArray(eventsResult.value)) {
+      const today = new Date();
+      const todayString = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, "0"),
+        String(today.getDate()).padStart(2, "0")
+      ].join("-");
+
+      const featuredEvents = eventsResult.value
+        .filter(event =>
+          event &&
+          event.status === "publicado" &&
+          event.featured === true &&
+          isValidHomeSlug(event.slug) &&
+          typeof event.title === "string" &&
+          event.title.trim() !== "" &&
+          isValidHomeDate(event.date) &&
+          event.date >= todayString
+        )
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(0, 3);
+
+      if (eventsContainer && eventsSection && featuredEvents.length > 0) {
+        eventsContainer.innerHTML = featuredEvents
+          .map(createHomeEventCard)
+          .join("");
+
+        eventsSection.hidden = false;
+      }
+
+    } else {
+      console.warn("Não foi possível carregar os destaques de eventos.");
+    }
+
+    if (newsResult.status === "fulfilled" && Array.isArray(newsResult.value)) {
+      const featuredNews = newsResult.value
+        .filter(news =>
+          news &&
+          news.status === "publicado" &&
+          news.featured === true &&
+          isValidHomeSlug(news.slug) &&
+          typeof news.title === "string" &&
+          news.title.trim() !== "" &&
+          isValidHomeDate(news.date)
+        )
+        .sort((a, b) => b.date.localeCompare(a.date))
+        .slice(0, 3);
+
+      if (newsContainer && newsSection && featuredNews.length > 0) {
+        newsContainer.innerHTML = featuredNews
+          .map(createHomeNewsCard)
+          .join("");
+
+        newsSection.hidden = false;
+      }
+
+    } else {
+      console.warn("Não foi possível carregar os destaques de novidades.");
+    }
+  }
+  
   // ==================================================
   // PESQUISA E FILTROS DA BIBLIOTECA
   // ==================================================
