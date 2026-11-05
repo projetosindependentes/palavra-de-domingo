@@ -527,6 +527,7 @@ ${message.demonstration === true
 
 renderFeaturedMessage(publishedMessages);
   }
+ }
   
   // ==================================================
   // CARREGAR MENSAGEM INDIVIDUAL
